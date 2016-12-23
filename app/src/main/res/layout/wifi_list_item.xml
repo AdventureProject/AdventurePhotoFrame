@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:padding="@dimen/default_padding"
+              android:foreground="?android:attr/selectableItemBackground">
+
+    <TextView
+        android:id="@+id/WIFI_ITEM_ssid"
+        tools:text="SSID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMediumInverse"/>
+
+    <TextView
+        android:id="@+id/WIFI_ITEM_security"
+        tools:text="security"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmallInverse"/>
+</LinearLayout>

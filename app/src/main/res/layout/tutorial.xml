@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/TUTORIAL_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/TUTORIAL_photo_info"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:background="#CC333333"
+        android:text="@string/TUTORIAL_photo_info"
+        />
+
+    <TextView
+        android:id="@+id/TUTORIAL_about"
+        app:layout_widthPercent="33%"
+        app:layout_heightPercent="33%"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:elevation="@dimen/default_elevation"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:background="#673AB7"
+        android:text="@string/TUTORIAL_about"
+        />
+
+    <TextView
+        android:id="@+id/TUTORIAL_settings"
+        app:layout_widthPercent="33%"
+        app:layout_heightPercent="33%"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:elevation="@dimen/default_elevation"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:background="#4CAF50"
+        android:text="@string/TUTORIAL_settings"
+        />
+
+    <TextView
+        android:id="@+id/TUTORIAL_tutorial"
+        app:layout_widthPercent="33%"
+        app:layout_heightPercent="33%"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:elevation="@dimen/default_elevation"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:background="#FFA000"
+        android:text="@string/TUTORIAL_tutorial"
+        />
+
+    <TextView
+        android:id="@+id/TUTORIAL_next_photo"
+        app:layout_widthPercent="33%"
+        app:layout_heightPercent="33%"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:elevation="@dimen/default_elevation"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:background="@color/accent"
+        android:text="@string/TUTORIAL_next"
+        />
+</android.support.percent.PercentRelativeLayout>

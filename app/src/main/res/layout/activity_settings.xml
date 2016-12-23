@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_debug"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.darkrockstudios.apps.adventurephotoframe.SettingsActivity">
+
+    <TextView
+        android:id="@+id/SETTINGS_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/default_padding"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/SETTINGS_title"/>
+
+    <LinearLayout
+        android:id="@+id/SETTINGS_wifi_info_container"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/default_margin"
+        android:background="@color/light"
+        android:layout_below="@+id/SETTINGS_title"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/SETTINGS_title">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:padding="@dimen/default_padding"
+            android:background="@color/primary"
+            android:text="@string/SETTINGS_wifi_title"/>
+
+        <TextView
+            android:id="@+id/SETTINGS_ssid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/default_padding"
+            android:textAppearance="?android:attr/textAppearanceSmallInverse"
+            tools:text="ssid"/>
+
+        <TextView
+            android:id="@+id/SETTINGS_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/default_padding"
+            android:textAppearance="?android:attr/textAppearanceSmallInverse"
+            tools:text="status"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/SETTINGS_wifi_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/default_padding"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:background="@color/primary"
+        android:text="WiFi Networks"
+        android:layout_alignLeft="@+id/SETTINGS_available_networks"
+        android:layout_alignRight="@+id/SETTINGS_available_networks"/>
+
+    <ListView
+        android:id="@+id/SETTINGS_available_networks"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/SETTINGS_wifi_title"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/SETTINGS_title"
+        android:background="@color/light"/>
+
+    <TextView
+        android:text="Update Frequency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/SETTINGS_frequency_title"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_above="@+id/SETTINGS_frequency_display"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="33dp"/>
+
+    <SeekBar
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:max="29"
+        android:progress="5"
+        android:id="@+id/SETTINGS_frequency_seekbar"
+        android:layout_above="@+id/SETTINGS_frequency_display"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/SETTINGS_wifi_info_container"/>
+
+    <TextView
+        android:id="@+id/SETTINGS_frequency_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/SETTINGS_frequency_seekbar"
+        android:text="5 minutes"/>
+
+    <Button
+        android:id="@+id/DEBUG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Debug"
+        android:layout_margin="@dimen/default_margin"
+        android:layout_below="@+id/SETTINGS_wifi_info_container"
+        android:layout_toEndOf="@+id/SETTINGS_close"/>
+
+    <Button
+        android:id="@+id/SETTINGS_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:text="Close"
+        android:layout_below="@+id/SETTINGS_wifi_info_container"
+        android:layout_alignParentStart="true"/>
+
+</RelativeLayout>

@@ -1,0 +1,47 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             xmlns:map="http://schemas.android.com/apk/res-auto"
+             android:id="@+id/PHOTOINFO_container"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="com.darkrockstudios.apps.adventurephotoframe.PhotoInfoActivity">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/PHOTOINFO_map_far"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            tools:background="#FF555555"/>
+
+        <ImageView
+            android:id="@+id/PHOTOINFO_map_close"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            tools:background="#FF111111"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/PHOTOINFO_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/default_padding"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:background="@drawable/top_text_fade"
+        tools:text="Photo Title"/>
+
+    <TextView
+        android:id="@+id/PHOTOINFO_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/default_padding"
+        android:layout_gravity="bottom"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:background="@drawable/bottom_text_fade"
+        tools:text="1/12/03"/>
+</FrameLayout>
