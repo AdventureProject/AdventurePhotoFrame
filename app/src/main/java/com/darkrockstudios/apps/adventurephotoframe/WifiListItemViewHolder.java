@@ -27,6 +27,6 @@ public class WifiListItemViewHolder
 	public void bind( ScanResult wifiNetwork )
 	{
 		m_ssidView.setText( wifiNetwork.SSID );
-		m_securityView.setText( wifiNetwork.capabilities );
+		m_securityView.setText( m_securityView.getContext().getString( R.string.WIFI_strength, wifiNetwork.level ) );
 	}
 }

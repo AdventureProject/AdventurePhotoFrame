@@ -14,5 +14,8 @@
     <string name="SETTINGS_wifi_ssid">SSID: %1$s</string>
     <string name="SETTINGS_wifi_status">Status: %1$s</string>
 
+    <string name="SETTINGS_WIFIDIALOG_title">Connect to %1$s</string>
+
     <string name="SETTINGS_frequency">%1$d minutes</string>
+    <string name="WIFI_strength">%1$d dBm</string>
 </resources>

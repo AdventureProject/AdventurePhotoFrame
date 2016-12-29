@@ -11,7 +11,10 @@ import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.text.format.Formatter;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -23,7 +26,8 @@ import butterknife.OnClick;
 
 public class SettingsActivity extends BaseActivity
 {
-	private static final String TAG = SettingsActivity.class.getSimpleName();
+	private static final String TAG                    = SettingsActivity.class.getSimpleName();
+	private static final String WIFI_CONFIG_DIALOG_TAG = "WIFI_CONFIG_DIALOG";
 
 	@BindView(R.id.SETTINGS_ssid)
 	TextView m_ssidView;
@@ -41,6 +45,9 @@ public class SettingsActivity extends BaseActivity
 	@BindView(R.id.SETTINGS_frequency_display)
 	TextView m_frequencyDisplayView;
 
+	@BindView(R.id.SETTINGS_wifi_loading)
+	View m_loadingContainer;
+
 	private WifiReceiver        m_connectionReceiver;
 	private NetworkScanReceiver m_scanReceiver;
 	private WifiManager         m_wifiManager;
@@ -57,6 +64,7 @@ public class SettingsActivity extends BaseActivity
 
 		m_avalibleNetworksAdapter = new WifiListAdapter( this );
 		m_avalibleNetworksView.setAdapter( m_avalibleNetworksAdapter );
+		m_avalibleNetworksView.setOnItemClickListener( new WifiItemClickListener() );
 
 		long currentFrequencyMs = Settings.getUpdateFrequency( this );
 		int currentFrequencyMinutes = (int) ((currentFrequencyMs / 1000L) / 60L);
@@ -102,7 +110,18 @@ public class SettingsActivity extends BaseActivity
 		}
 
 		m_ssidView.setText( getString( R.string.SETTINGS_wifi_ssid, (ssid == null ? "none" : ssid) ) );
-		m_statusView.setText( getString( R.string.SETTINGS_wifi_status, wifiInfo.getSupplicantState() ) );
+
+		int ipInt = m_wifiManager.getConnectionInfo().getIpAddress();
+		if( ipInt != 0 )
+		{
+			String ip = Formatter.formatIpAddress( ipInt );
+			m_statusView.setText( getString( R.string.SETTINGS_wifi_status, ip ) );
+		}
+		else
+		{
+			m_statusView.setText(
+					getString( R.string.SETTINGS_wifi_status, m_wifiManager.getConnectionInfo().getSupplicantState() ) );
+		}
 	}
 
 	@Override
@@ -121,6 +140,18 @@ public class SettingsActivity extends BaseActivity
 	public void onDebug()
 	{
 		startActivity( new Intent( this, DebugActivity.class ) );
+	}
+
+	private void showWifi()
+	{
+		m_loadingContainer.setVisibility( View.GONE );
+		m_avalibleNetworksView.setVisibility( View.VISIBLE );
+	}
+
+	private void hideWifi()
+	{
+		m_loadingContainer.setVisibility( View.VISIBLE );
+		m_avalibleNetworksView.setVisibility( View.INVISIBLE );
 	}
 
 	private class FrequencyChangeListener implements SeekBar.OnSeekBarChangeListener
@@ -152,6 +183,8 @@ public class SettingsActivity extends BaseActivity
 		@Override
 		public void onReceive( Context context, Intent intent )
 		{
+			showWifi();
+
 			if( intent.getAction().equals( WifiManager.SCAN_RESULTS_AVAILABLE_ACTION ) )
 			{
 				List<ScanResult> scanResults = m_wifiManager.getScanResults();
@@ -179,6 +212,17 @@ public class SettingsActivity extends BaseActivity
 			}
 
 			updateWifiInfo();
+		}
+	}
+
+	private class WifiItemClickListener implements AdapterView.OnItemClickListener
+	{
+		@Override
+		public void onItemClick( AdapterView<?> parent, View view, int position, long id )
+		{
+			ScanResult wifiNetwork = m_avalibleNetworksAdapter.getItem( position );
+			WifiConfigDialog wifiConfigDialog = WifiConfigDialog.newInstance( wifiNetwork );
+			wifiConfigDialog.show( getFragmentManager(), WIFI_CONFIG_DIALOG_TAG );
 		}
 	}
 }
