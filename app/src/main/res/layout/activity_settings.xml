@@ -40,7 +40,7 @@
 
         <TextView
             android:id="@+id/SETTINGS_ssid"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/default_padding"
             android:textAppearance="?android:attr/textAppearanceSmallInverse"
@@ -48,9 +48,11 @@
 
         <TextView
             android:id="@+id/SETTINGS_status"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/default_padding"
+            android:lines="1"
+            android:ellipsize="end"
             android:textAppearance="?android:attr/textAppearanceSmallInverse"
             tools:text="status"/>
     </LinearLayout>

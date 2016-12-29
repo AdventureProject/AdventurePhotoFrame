@@ -18,11 +18,14 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static com.darkrockstudios.apps.adventurephotoframe.Settings.getUpdateFrequency;
 
 public class SettingsActivity extends BaseActivity
 {
@@ -66,7 +69,7 @@ public class SettingsActivity extends BaseActivity
 		m_avalibleNetworksView.setAdapter( m_avalibleNetworksAdapter );
 		m_avalibleNetworksView.setOnItemClickListener( new WifiItemClickListener() );
 
-		long currentFrequencyMs = Settings.getUpdateFrequency( this );
+		long currentFrequencyMs = getUpdateFrequency( this );
 		int currentFrequencyMinutes = (int) ((currentFrequencyMs / 1000L) / 60L);
 
 		m_frequencySeekBar.setProgress( currentFrequencyMinutes - 1 );
@@ -174,7 +177,12 @@ public class SettingsActivity extends BaseActivity
 		@Override
 		public void onStopTrackingTouch( SeekBar seekBar )
 		{
+			int frequencyM = (int) (Settings.getUpdateFrequency( SettingsActivity.this ) / 1000L / 60L);
 
+			Toast.makeText( SettingsActivity.this,
+			                getString( R.string.TOAST_update_frequency_set, frequencyM ),
+			                Toast.LENGTH_SHORT )
+			     .show();
 		}
 	}
 

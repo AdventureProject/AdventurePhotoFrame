@@ -87,7 +87,7 @@ public class MainActivity extends BaseActivity
 		hideTutorial();
 		m_progressView.setVisibility( View.VISIBLE );
 
-		Call<Photo> call = App.get().getNetworking().m_photoFrameService.getPhoto( 1 );
+		Call<Photo> call = App.get().getNetworking().m_photoFrameService.getPhoto( App.get().getPhotoFrameId() );
 		Log.d( TAG, "Requesting photo info..." );
 		call.enqueue( new PhotoCallback() );
 	}

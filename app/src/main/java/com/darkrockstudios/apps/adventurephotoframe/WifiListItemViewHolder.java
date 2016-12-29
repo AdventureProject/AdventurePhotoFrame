@@ -1,6 +1,8 @@
 package com.darkrockstudios.apps.adventurephotoframe;
 
 import android.net.wifi.ScanResult;
+import android.text.Html;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -26,7 +28,15 @@ public class WifiListItemViewHolder
 
 	public void bind( ScanResult wifiNetwork )
 	{
-		m_ssidView.setText( wifiNetwork.SSID );
+		if( !TextUtils.isEmpty( wifiNetwork.SSID ) )
+		{
+			m_ssidView.setText( wifiNetwork.SSID );
+		}
+		else
+		{
+			m_ssidView.setText( Html.fromHtml( m_ssidView.getContext().getString( R.string.SETTINGS_WIFI_ITEM_no_ssid ),
+			                                   Html.FROM_HTML_MODE_LEGACY ) );
+		}
 		m_securityView.setText( m_securityView.getContext().getString( R.string.WIFI_strength, wifiNetwork.level ) );
 	}
 }

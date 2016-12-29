@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.f2prateek.dart.InjectExtra;
 
@@ -92,6 +93,11 @@ public class WifiConfigDialog extends BaseFragment
 				break;
 			}
 		}
+
+		Toast.makeText( getActivity(),
+		                getString( R.string.TOAST_wifi_set, ssid ),
+		                Toast.LENGTH_SHORT )
+		     .show();
 
 		dismissAllowingStateLoss();
 	}
