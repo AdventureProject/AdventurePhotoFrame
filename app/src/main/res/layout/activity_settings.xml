@@ -11,24 +11,15 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.darkrockstudios.apps.adventurephotoframe.SettingsActivity">
 
-    <TextView
-        android:id="@+id/SETTINGS_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/default_padding"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/SETTINGS_title"/>
-
     <LinearLayout
         android:id="@+id/SETTINGS_wifi_info_container"
         android:orientation="vertical"
-        android:layout_width="wrap_content"
+        android:layout_width="260dp"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/default_margin"
         android:background="@color/light"
-        android:layout_below="@+id/SETTINGS_title"
-        android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/SETTINGS_title">
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
         <TextView
             android:layout_width="match_parent"
@@ -54,7 +45,7 @@
             android:lines="1"
             android:ellipsize="end"
             android:textAppearance="?android:attr/textAppearanceSmallInverse"
-            tools:text="status"/>
+            tools:text="status: 192.168.1.42"/>
     </LinearLayout>
 
     <TextView
@@ -62,11 +53,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="@dimen/default_padding"
+        android:layout_marginStart="@dimen/default_margin"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:background="@color/primary"
         android:text="WiFi Networks"
-        android:layout_alignLeft="@+id/SETTINGS_available_networks"
-        android:layout_alignRight="@+id/SETTINGS_available_networks"/>
+        android:layout_toEndOf="@+id/SETTINGS_wifi_info_container"
+        android:layout_alignParentEnd="true"/>
 
     <TextView
         android:text="Update Frequency"
@@ -104,43 +96,30 @@
         android:layout_height="wrap_content"
         android:text="Debug"
         android:layout_margin="@dimen/default_margin"
-        android:layout_below="@+id/SETTINGS_wifi_info_container"
-        android:layout_toEndOf="@+id/SETTINGS_close"/>
-
-    <Button
-        android:id="@+id/SETTINGS_close"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/default_margin"
-        android:text="Close"
-        android:layout_below="@+id/SETTINGS_wifi_info_container"
-        android:layout_alignParentStart="true"/>
+        android:layout_below="@+id/SETTINGS_wifi_info_container"/>
 
     <ListView
         android:id="@+id/SETTINGS_available_networks"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/default_margin"
         android:divider="#00000000"
         android:dividerHeight="@dimen/default_margin"
         android:padding="@dimen/default_padding"
         android:background="@color/off_light"
         android:layout_below="@+id/SETTINGS_wifi_title"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_toEndOf="@+id/SETTINGS_frequency_seekbar"
+        android:layout_alignStart="@+id/SETTINGS_wifi_title"
+        android:layout_alignEnd="@+id/SETTINGS_wifi_title"
         android:visibility="invisible"/>
 
     <FrameLayout
         android:id="@+id/SETTINGS_wifi_loading"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/default_margin"
         android:background="@color/off_light"
         android:layout_below="@+id/SETTINGS_wifi_title"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_toEndOf="@+id/SETTINGS_frequency_seekbar">
+        android:layout_alignStart="@+id/SETTINGS_wifi_title"
+        android:layout_alignEnd="@+id/SETTINGS_wifi_title">
 
         <ProgressBar
             style="?android:attr/progressBarStyleLarge"

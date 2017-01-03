@@ -219,6 +219,13 @@ public class MainActivity extends BaseActivity
 		startActivity( new Intent( this, SettingsActivity.class ) );
 	}
 
+	@OnClick(R.id.TUTORIAL_about)
+	public void onAbout()
+	{
+		hideTutorial();
+		startActivity( new Intent( this, AboutActivity.class ) );
+	}
+
 	private class UpdatePhotoTask implements Runnable
 	{
 		@Override

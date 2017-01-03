@@ -133,12 +133,6 @@ public class SettingsActivity extends BaseActivity
 		return R.layout.activity_settings;
 	}
 
-	@OnClick(R.id.SETTINGS_close)
-	public void onClose()
-	{
-		finish();
-	}
-
 	@OnClick(R.id.DEBUG)
 	public void onDebug()
 	{

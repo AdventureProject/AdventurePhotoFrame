@@ -15,12 +15,6 @@ public class DebugActivity extends BaseActivity
 		return R.layout.activity_debug;
 	}
 
-	@OnClick(R.id.DEBUG_close)
-	public void onClose()
-	{
-		finish();
-	}
-
 	@OnClick(R.id.DEBUG_enable_keyboards)
 	public void onKeyboardSettings()
 	{
