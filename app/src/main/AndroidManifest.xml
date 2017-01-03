@@ -18,7 +18,9 @@
         android:theme="@style/AppTheme">
         <uses-library android:name="com.google.android.things"/>
 
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -54,6 +56,7 @@
             android:name=".SettingsActivity"
             android:label="@string/SETTINGS_title"
             android:theme="@style/SettingsTheme"
+            android:launchMode="singleTop"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
