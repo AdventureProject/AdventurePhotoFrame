@@ -7,6 +7,7 @@ import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,6 +49,7 @@ public class WifiConfigDialog extends BaseFragment
 	@Override
 	public void onViewCreated( View view, Bundle savedInstanceState )
 	{
+		getDialog().getWindow().requestFeature( Window.FEATURE_NO_TITLE );
 		super.onViewCreated( view, savedInstanceState );
 
 		m_titleView.setText( getString( R.string.SETTINGS_WIFIDIALOG_title, m_wifiNetwork.SSID ) );
