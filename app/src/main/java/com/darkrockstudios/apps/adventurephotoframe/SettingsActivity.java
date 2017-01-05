@@ -51,6 +51,12 @@ public class SettingsActivity extends BaseActivity
 	@BindView(R.id.SETTINGS_wifi_loading)
 	View m_loadingContainer;
 
+	@BindView(R.id.SETTINGS_version)
+	TextView m_versionView;
+
+	@BindView(R.id.SETTINGS_id)
+	TextView m_idView;
+
 	private WifiReceiver        m_connectionReceiver;
 	private NetworkScanReceiver m_scanReceiver;
 	private WifiManager         m_wifiManager;
@@ -76,6 +82,9 @@ public class SettingsActivity extends BaseActivity
 		m_frequencyDisplayView.setText( getString( R.string.SETTINGS_frequency, currentFrequencyMinutes ) );
 
 		m_frequencySeekBar.setOnSeekBarChangeListener( new FrequencyChangeListener() );
+
+		m_versionView.setText( getString( R.string.SETTINGS_version, BuildConfig.VERSION_CODE ) );
+		m_idView.setText( getString( R.string.SETTINGS_id, App.get().getPhotoFrameId() ) );
 
 		updateWifiInfo();
 	}

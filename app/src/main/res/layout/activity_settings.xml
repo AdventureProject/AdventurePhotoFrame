@@ -61,14 +61,14 @@
         android:layout_alignParentEnd="true"/>
 
     <TextView
+        android:id="@+id/SETTINGS_frequency_title"
         android:text="Update Frequency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/SETTINGS_frequency_title"
+        android:layout_marginTop="@dimen/default_margin"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_above="@+id/SETTINGS_frequency_display"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="33dp"/>
+        android:layout_below="@+id/SETTINGS_wifi_info_container"
+        android:layout_alignParentStart="true"/>
 
     <SeekBar
         style="@style/Widget.AppCompat.SeekBar.Discrete"
@@ -77,7 +77,7 @@
         android:max="29"
         android:progress="5"
         android:id="@+id/SETTINGS_frequency_seekbar"
-        android:layout_above="@+id/SETTINGS_frequency_display"
+        android:layout_below="@+id/SETTINGS_frequency_title"
         android:layout_alignParentStart="true"
         android:layout_alignEnd="@+id/SETTINGS_wifi_info_container"/>
 
@@ -86,7 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/SETTINGS_frequency_seekbar"
         android:layout_alignEnd="@+id/SETTINGS_frequency_seekbar"
         android:text="5 minutes"/>
 
@@ -95,8 +95,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Debug"
-        android:layout_margin="@dimen/default_margin"
-        android:layout_below="@+id/SETTINGS_wifi_info_container"/>
+        android:layout_alignBottom="@+id/SETTINGS_version"
+        android:layout_toLeftOf="@+id/SETTINGS_wifi_title"/>
 
     <ListView
         android:id="@+id/SETTINGS_available_networks"
@@ -127,5 +127,24 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"/>
     </FrameLayout>
+
+    <TextView
+        android:id="@+id/SETTINGS_id"
+        android:text="id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        />
+
+    <TextView
+        android:id="@+id/SETTINGS_version"
+        android:text="Version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_above="@+id/SETTINGS_id"
+        android:layout_alignParentStart="true"/>
 
 </RelativeLayout>

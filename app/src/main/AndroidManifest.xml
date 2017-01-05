@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <application
         android:name=".App"
@@ -46,8 +47,8 @@
         <activity
             android:name=".DebugActivity"
             android:label="@string/DEBUG_title"
-            android:theme="@style/SettingsTheme"
-            android:parentActivityName=".SettingsActivity">
+            android:parentActivityName=".SettingsActivity"
+            android:theme="@style/SettingsTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.darkrockstudios.apps.adventurephotoframe.SettingsActivity"/>
@@ -55,9 +56,9 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/SETTINGS_title"
-            android:theme="@style/SettingsTheme"
             android:launchMode="singleTop"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/SettingsTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.darkrockstudios.apps.adventurephotoframe.MainActivity"/>
@@ -65,12 +66,17 @@
         <activity
             android:name=".AboutActivity"
             android:label="@string/ABOUT_title"
-            android:theme="@style/SettingsTheme"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/SettingsTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.darkrockstudios.apps.adventurephotoframe.MainActivity"/>
         </activity>
+
+        <service
+            android:name=".HealthMonitorService"
+            android:permission="android.permission.BIND_JOB_SERVICE">
+        </service>
     </application>
 
 </manifest>
