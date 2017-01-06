@@ -12,9 +12,71 @@
     android:paddingBottom="@dimen/activity_vertical_margin">
 
     <TextView
-        android:text="TextView"
+        android:text="@string/ABOUT_HEADER"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2"
-        android:textAppearance="@style/LargeText"/>
+        android:id="@+id/ABOUT_header"
+        android:textAppearance="@style/LargeText"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/ABOUT_logo"/>
+
+    <TextView
+        android:text="@string/ABOUT_url"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/default_padding"
+        android:id="@+id/ABOUT_url"
+        android:textAppearance="@style/MediumText"
+        android:layout_below="@+id/ABOUT_header"
+        android:layout_toStartOf="@+id/ABOUT_logo"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:text="@string/ABOUT_attribution"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/default_padding"
+        android:layout_below="@+id/ABOUT_url"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/ABOUT_logo"
+        android:textAppearance="@style/SmallText"
+        android:id="@+id/ABOUT_attribution"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/logo"
+        android:id="@+id/ABOUT_logo"
+        android:contentDescription="@string/ABOUT_logo_description"/>
+
+    <TextView
+        android:text="@string/ABOUT_feedback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:textAppearance="@style/SmallText"
+        android:id="@+id/ABOUT_feedback"
+        android:layout_toStartOf="@+id/ABOUT_id"/>
+
+    <TextView
+        android:id="@+id/ABOUT_id"
+        tools:text="id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        />
+
+    <TextView
+        android:id="@+id/ABOUT_version"
+        tools:text="Version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_above="@+id/ABOUT_id"
+        android:layout_alignParentEnd="true"/>
 </RelativeLayout>

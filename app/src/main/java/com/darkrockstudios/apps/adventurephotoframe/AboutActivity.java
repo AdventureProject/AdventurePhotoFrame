@@ -1,17 +1,32 @@
 package com.darkrockstudios.apps.adventurephotoframe;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.widget.TextView;
 
-public class AboutActivity extends Activity
+import butterknife.BindView;
+
+public class AboutActivity extends BaseActivity
 {
+	@BindView(R.id.ABOUT_version)
+	TextView m_versionView;
+
+	@BindView(R.id.ABOUT_id)
+	TextView m_idView;
+
 	@Override
 	protected void onCreate( Bundle savedInstanceState )
 	{
-		super.onCreate( savedInstanceState );
-
 		getActionBar().setDisplayHomeAsUpEnabled( true );
 
-		setContentView( R.layout.activity_about );
+		super.onCreate( savedInstanceState );
+
+		m_versionView.setText( getString( R.string.SETTINGS_version, BuildConfig.VERSION_CODE ) );
+		m_idView.setText( getString( R.string.SETTINGS_id, App.get().getPhotoFrameId() ) );
+	}
+
+	@Override
+	public int getContentLayout()
+	{
+		return R.layout.activity_about;
 	}
 }

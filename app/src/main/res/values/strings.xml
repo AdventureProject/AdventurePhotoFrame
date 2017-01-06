@@ -33,4 +33,12 @@
 
     <string name="TOAST_update_frequency_set">Update frequency set to %1$d minutes</string>
     <string name="TOAST_wifi_set">WiFI network set to: %1$s</string>
+    <string name="ABOUT_HEADER">We Think Adventure.Rocks</string>
+    <string name="ABOUT_url">www.wethinkadventure.rocks</string>
+    <string name="ABOUT_attribution"><![CDATA[All photos taken by Stacy & Adam or on one of their trips]]></string>
+    <string name="ABOUT_feedback">Send Questions or Feedback to: darkrockstudios@gmail.com</string>
+    <string name="ABOUT_logo_description">Logo</string>
+    <string name="SETTINGS_debug">Debug</string>
+    <string name="SETTINGS_update_frequency">Update Frequency</string>
+    <string name="SETTINGS_wifi_networks_title">WiFi Networks</string>
 </resources>
