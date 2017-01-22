@@ -19,11 +19,12 @@
 
     <string name="SETTINGS_WIFI_ITEM_no_ssid"><![CDATA[<i>&lt;hidden&gt;</i>]]></string>
 
-    <string name="SETTINGS_WIFIDIALOG_title">Connect to %1$s</string>
+    <string name="SETTINGS_WIFIDIALOG_title">Connect to Network</string>
 
     <string name="SETTINGS_frequency">%1$d minutes</string>
     <string name="WIFI_strength">%1$d dBm</string>
 
+    <string name="SETTINGS_WIFIDIALOG_ssid">SSID</string>
     <string name="SETTINGS_WIFIDIALOG_password">Password</string>
     <string name="SETTINGS_WIFIDIALOG_connect">Connect</string>
 
@@ -75,5 +76,6 @@
     <string name="WELCOME_slide8_title">That\'s It!</string>
     <string name="WELCOME_slide8_description">The last thing we need to do is get your Photo Frame connected to your WiFi. When you hit DONE you will be taken to the Settings screen where you can find your network and enter your password.\n\nWe hope you enjoy sharing in our Adventures!\n- Adam &amp; Stacy</string>
     <string name="ABOUT_welcome_rerun">Re-run Welcome tutorial</string>
+    <string name="SETTINGS_hidden_network">Hidden Network</string>
     <color name="WELCOME_slide8_background">#b2371c</color>
 </resources>

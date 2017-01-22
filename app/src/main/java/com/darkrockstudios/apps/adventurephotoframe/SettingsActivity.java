@@ -140,6 +140,13 @@ public class SettingsActivity extends BaseActivity
 		startActivity( new Intent( this, DebugActivity.class ) );
 	}
 
+	@OnClick(R.id.SETTINGS_wifi_hidden_network)
+	public void onHiddenNetwork()
+	{
+		WifiConfigDialog wifiConfigDialog = WifiConfigDialog.newInstance();
+		wifiConfigDialog.show( getFragmentManager(), WIFI_CONFIG_DIALOG_TAG );
+	}
+
 	private void showWifi()
 	{
 		m_loadingContainer.setVisibility( View.GONE );

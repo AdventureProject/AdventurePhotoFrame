@@ -5,11 +5,12 @@ import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.f2prateek.dart.InjectExtra;
@@ -27,11 +28,12 @@ public class WifiConfigDialog extends BaseFragment
 {
 	public static final String ARG_WIFI_NETWORK = "ARG_WIFI_NETWORK";
 
+	@Nullable
 	@InjectExtra(ARG_WIFI_NETWORK)
 	ScanResult m_wifiNetwork;
 
-	@BindView(R.id.WIFIDIALOG_title)
-	TextView m_titleView;
+	@BindView(R.id.WIFIDIALOG_ssid)
+	EditText m_ssidView;
 
 	@BindView(R.id.WIFIDIALOG_password)
 	EditText m_passwordView;
@@ -46,13 +48,27 @@ public class WifiConfigDialog extends BaseFragment
 		return fragment;
 	}
 
+	public static WifiConfigDialog newInstance()
+	{
+		Bundle args = new Bundle();
+
+		WifiConfigDialog fragment = new WifiConfigDialog();
+		fragment.setArguments( args );
+		return fragment;
+	}
+
 	@Override
 	public void onViewCreated( View view, Bundle savedInstanceState )
 	{
 		getDialog().getWindow().requestFeature( Window.FEATURE_NO_TITLE );
 		super.onViewCreated( view, savedInstanceState );
 
-		m_titleView.setText( getString( R.string.SETTINGS_WIFIDIALOG_title, m_wifiNetwork.SSID ) );
+		if( m_wifiNetwork != null )
+		{
+			m_ssidView.setText( m_wifiNetwork.SSID );
+			m_ssidView.setInputType( InputType.TYPE_NULL );
+			m_ssidView.setFocusable( false );
+		}
 	}
 
 	@Override
@@ -65,9 +81,10 @@ public class WifiConfigDialog extends BaseFragment
 	public void onConnectClick()
 	{
 		String password = m_passwordView.getText().toString();
+		String ssid = m_ssidView.getText().toString();
 		if( !TextUtils.isEmpty( password ) )
 		{
-			connectToWifi( m_wifiNetwork.SSID, password );
+			connectToWifi( ssid, password );
 		}
 	}
 

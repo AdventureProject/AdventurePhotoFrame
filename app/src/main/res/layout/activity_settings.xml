@@ -48,17 +48,30 @@
             tools:text="status: 192.168.1.42"/>
     </LinearLayout>
 
-    <TextView
+    <FrameLayout
         android:id="@+id/SETTINGS_wifi_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="@dimen/default_padding"
         android:layout_marginStart="@dimen/default_margin"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:background="@color/primary"
-        android:text="@string/SETTINGS_wifi_networks_title"
         android:layout_toEndOf="@+id/SETTINGS_wifi_info_container"
-        android:layout_alignParentEnd="true"/>
+        android:layout_alignParentEnd="true"
+        android:background="@color/primary">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/SETTINGS_wifi_networks_title"
+            />
+
+        <Button
+            android:id="@+id/SETTINGS_wifi_hidden_network"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="@string/SETTINGS_hidden_network"/>
+    </FrameLayout>
 
     <TextView
         android:id="@+id/SETTINGS_frequency_title"
@@ -96,7 +109,8 @@
         android:layout_height="wrap_content"
         android:text="@string/SETTINGS_debug"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true"
+        android:visibility="gone"/>
 
     <ListView
         android:id="@+id/SETTINGS_available_networks"

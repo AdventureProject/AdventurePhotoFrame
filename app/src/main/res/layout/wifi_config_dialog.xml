@@ -25,13 +25,26 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/SETTINGS_WIFIDIALOG_ssid"/>
+
+        <EditText
+            android:id="@+id/WIFIDIALOG_ssid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text|textNoSuggestions"
+            android:imeOptions="flagNoFullscreen"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/SETTINGS_WIFIDIALOG_password"/>
 
         <EditText
             android:id="@+id/WIFIDIALOG_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textVisiblePassword"/>
+            android:inputType="textPassword"
+            android:imeOptions="flagNoFullscreen"/>
 
         <Button
             android:id="@+id/WIFIDIALOG_confirm"
