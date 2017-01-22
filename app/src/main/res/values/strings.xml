@@ -41,4 +41,39 @@
     <string name="SETTINGS_debug">Debug</string>
     <string name="SETTINGS_update_frequency">Update Frequency</string>
     <string name="SETTINGS_wifi_networks_title">WiFi Networks</string>
+
+    <string name="WELCOME_title">Welcome!</string>
+
+    <string name="WELCOME_slide1_title">Adventure.Rocks</string>
+    <string name="WELCOME_slide1_description">Welcome to your Adventure.Rocks photo frame!\n\nThe next few screens will introduce you to what it can do. Lets get started!</string>
+    <color name="WELCOME_slide1_background">#2a2a2a</color>
+
+    <string name="WELCOME_slide2_title">Photo\'s From Adam &amp; Stacy</string>
+    <string name="WELCOME_slide2_description">All of the photos you\'ll see on here were taken by us, or of us.</string>
+    <color name="WELCOME_slide2_background">#2875cc</color>
+
+    <string name="WELCOME_slide3_title">Always Fresh</string>
+    <string name="WELCOME_slide3_description">A new photo every 5 minutes. You can change this interval in the settings.</string>
+    <color name="WELCOME_slide3_background">#d9a011</color>
+
+    <string name="WELCOME_slide4_title">Always Up-to-date</string>
+    <string name="WELCOME_slide4_description">As we take new photos, they will automatically start showing up here.</string>
+    <color name="WELCOME_slide4_background">#2ca41c</color>
+
+    <string name="WELCOME_slide5_title">More than just Photos</string>
+    <string name="WELCOME_slide5_description">You can tap any photo to get more info, including titles, descriptions, and maps of where it was taken.</string>
+    <color name="WELCOME_slide5_background">#a4651c</color>
+
+    <string name="WELCOME_slide6_title">Controlling your Photo Frame</string>
+    <string name="WELCOME_slide6_description">The 4 corners of your Photo Frame each perform a separate action. To see what those actions are, tap the bottom left corner of a photo to get a Tutorial overlay.</string>
+    <color name="WELCOME_slide6_background">#a41c8d</color>
+
+    <string name="WELCOME_slide7_title">Settings</string>
+    <string name="WELCOME_slide7_description">If you need to adjust settings later, like change your WiFi password, tap the top right of a photo to enter the Settings screen.</string>
+    <color name="WELCOME_slide7_background">#84a41c</color>
+
+    <string name="WELCOME_slide8_title">That\'s It!</string>
+    <string name="WELCOME_slide8_description">The last thing we need to do is get your Photo Frame connected to your WiFi. When you hit DONE you will be taken to the Settings screen where you can find your network and enter your password.\n\nWe hope you enjoy sharing in our Adventures!\n- Adam &amp; Stacy</string>
+    <string name="ABOUT_welcome_rerun">Re-run Welcome tutorial</string>
+    <color name="WELCOME_slide8_background">#b2371c</color>
 </resources>

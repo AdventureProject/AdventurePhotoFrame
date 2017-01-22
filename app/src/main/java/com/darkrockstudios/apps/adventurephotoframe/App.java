@@ -59,6 +59,15 @@ public class App extends Application
 		m_networking = new Networking();
 
 		setupHealthMonitor();
+
+		// Ensure the photo frame is in manual brightness mode
+		/*
+		android.provider.Settings.System.putInt( getContentResolver(),
+		                                         android.provider.Settings.System.SCREEN_BRIGHTNESS_MODE,
+		                                         android.provider.Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL );
+
+		android.provider.Settings.System.putInt(getContentResolver(), android.provider.Settings.System.SCREEN_BRIGHTNESS, 1 );
+		*/
 	}
 
 	private void setupHealthMonitor()

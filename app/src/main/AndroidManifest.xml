@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
 
     <application
         android:name=".App"
@@ -77,6 +78,12 @@
             android:name=".HealthMonitorService"
             android:permission="android.permission.BIND_JOB_SERVICE">
         </service>
+
+        <activity
+            android:name=".WelcomeActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:label="@string/WELCOME_title">
+        </activity>
     </application>
 
 </manifest>

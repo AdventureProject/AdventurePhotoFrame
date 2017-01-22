@@ -16,6 +16,20 @@ public class Settings
 
 	private static final String KEY_PHOTOFRAME_ID = "PHOTOFRAME_ID";
 
+	private static final String KEY_FIRST_RUN = "FIRST_RUN";
+
+	public static boolean getFirstRun( @NonNull final Context context )
+	{
+		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences( context );
+		return settings.getBoolean( KEY_FIRST_RUN, true );
+	}
+
+	public static void setFirstRunDone( @NonNull final Context context )
+	{
+		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences( context );
+		settings.edit().putBoolean( KEY_FIRST_RUN, false ).apply();
+	}
+
 	public static long getPhotoFrameId( @NonNull final Context context )
 	{
 		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences( context );

@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.text.format.Formatter;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SeekBar;
@@ -149,6 +150,23 @@ public class SettingsActivity extends BaseActivity
 	{
 		m_loadingContainer.setVisibility( View.VISIBLE );
 		m_avalibleNetworksView.setVisibility( View.INVISIBLE );
+	}
+
+	private void updateBrightness()
+	{
+		try
+		{
+/*
+			int br = android.provider.Settings.System.getInt( getContentResolver(),
+			                                                  android.provider.Settings.System.SCREEN_BRIGHTNESS );
+*/
+			WindowManager.LayoutParams lp = getWindow().getAttributes();
+			lp.screenBrightness = 0.01f;
+			getWindow().setAttributes( lp );
+		}
+		catch( Exception ignored )
+		{
+		}
 	}
 
 	private class FrequencyChangeListener implements SeekBar.OnSeekBarChangeListener

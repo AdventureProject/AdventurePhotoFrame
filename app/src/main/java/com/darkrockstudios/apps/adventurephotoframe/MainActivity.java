@@ -50,6 +50,18 @@ public class MainActivity extends BaseActivity
 		m_handler = new Handler();
 		m_updateTask = new UpdatePhotoTask();
 		requestNewPhoto();
+
+		handleFirstRun();
+	}
+
+	private void handleFirstRun()
+	{
+		if( Settings.getFirstRun( this ) )
+		{
+			Settings.setFirstRunDone( this );
+
+			startActivity( new Intent( this, WelcomeActivity.class ) );
+		}
 	}
 
 	@Override

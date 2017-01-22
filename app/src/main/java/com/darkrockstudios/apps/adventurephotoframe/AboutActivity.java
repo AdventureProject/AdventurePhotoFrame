@@ -1,9 +1,11 @@
 package com.darkrockstudios.apps.adventurephotoframe;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class AboutActivity extends BaseActivity
 {
@@ -28,5 +30,12 @@ public class AboutActivity extends BaseActivity
 	public int getContentLayout()
 	{
 		return R.layout.activity_about;
+	}
+
+	@OnClick(R.id.ABOUT_welcome_rerun)
+	public void onWeclomeClick()
+	{
+		startActivity( new Intent( this, WelcomeActivity.class ) );
+		finish();
 	}
 }
