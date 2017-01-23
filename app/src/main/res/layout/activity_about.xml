@@ -94,5 +94,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/ABOUT_reboot"
         android:layout_above="@+id/ABOUT_welcome_rerun"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true"
+        android:visibility="gone"/>
 </RelativeLayout>
