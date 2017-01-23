@@ -76,6 +76,7 @@
     <string name="WELCOME_slide8_title">That\'s It!</string>
     <string name="WELCOME_slide8_description">The last thing we need to do is get your Photo Frame connected to your WiFi. When you hit DONE you will be taken to the Settings screen where you can find your network and enter your password.\n\nWe hope you enjoy sharing in our Adventures!\n- Adam &amp; Stacy</string>
     <string name="ABOUT_welcome_rerun">Re-run Welcome tutorial</string>
-    <string name="SETTINGS_hidden_network">Hidden Network</string>
+    <string name="ABOUT_reboot">Reboot</string>
+    <string name="SETTINGS_hidden_network">Add Network</string>
     <color name="WELCOME_slide8_background">#b2371c</color>
 </resources>

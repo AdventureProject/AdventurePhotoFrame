@@ -1,4 +1,4 @@
-package com.darkrockstudios.apps.adventurephotoframe;
+package com.darkrockstudios.iot.adventurephotoframe;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -6,7 +6,7 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.darkrockstudios.apps.adventurephotoframe.data.Photo;
+import com.darkrockstudios.iot.adventurephotoframe.data.Photo;
 import com.f2prateek.dart.InjectExtra;
 import com.squareup.picasso.Picasso;
 

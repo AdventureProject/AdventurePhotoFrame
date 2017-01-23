@@ -1,4 +1,4 @@
-package com.darkrockstudios.apps.adventurephotoframe.data;
+package com.darkrockstudios.iot.adventurephotoframe.data;
 
 import org.parceler.Parcel;
 

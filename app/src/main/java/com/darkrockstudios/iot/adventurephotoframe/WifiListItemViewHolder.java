@@ -1,4 +1,4 @@
-package com.darkrockstudios.apps.adventurephotoframe;
+package com.darkrockstudios.iot.adventurephotoframe;
 
 import android.net.wifi.ScanResult;
 import android.text.Html;

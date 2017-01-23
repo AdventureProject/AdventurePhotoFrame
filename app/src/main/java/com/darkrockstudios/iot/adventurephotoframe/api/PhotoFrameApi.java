@@ -1,6 +1,6 @@
-package com.darkrockstudios.apps.adventurephotoframe.api;
+package com.darkrockstudios.iot.adventurephotoframe.api;
 
-import com.darkrockstudios.apps.adventurephotoframe.data.Photo;
+import com.darkrockstudios.iot.adventurephotoframe.data.Photo;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

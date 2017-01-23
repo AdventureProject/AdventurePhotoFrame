@@ -1,4 +1,4 @@
-package com.darkrockstudios.apps.adventurephotoframe;
+package com.darkrockstudios.iot.adventurephotoframe;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.darkrockstudios.apps.adventurephotoframe.data.Photo;
+import com.darkrockstudios.iot.adventurephotoframe.data.Photo;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;

@@ -1,4 +1,4 @@
-package com.darkrockstudios.apps.adventurephotoframe.api;
+package com.darkrockstudios.iot.adventurephotoframe.api;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;

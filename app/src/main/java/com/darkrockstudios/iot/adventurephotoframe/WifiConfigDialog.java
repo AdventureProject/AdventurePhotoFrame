@@ -1,4 +1,4 @@
-package com.darkrockstudios.apps.adventurephotoframe;
+package com.darkrockstudios.iot.adventurephotoframe;
 
 import android.content.Context;
 import android.net.wifi.ScanResult;
@@ -91,9 +91,14 @@ public class WifiConfigDialog extends BaseFragment
 	private void connectToWifi( String ssid, String password )
 	{
 		WifiConfiguration conf = new WifiConfiguration();
+
 		conf.SSID = "\"" + ssid + "\"";
+		conf.hiddenSSID = (m_wifiNetwork == null);
+
 		conf.preSharedKey = "\"" + password + "\"";
 		//conf.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
+
+		conf.status = WifiConfiguration.Status.ENABLED;
 
 		// Add the new Network to Android
 		WifiManager wifiManager = (WifiManager) getActivity().getSystemService( Context.WIFI_SERVICE );

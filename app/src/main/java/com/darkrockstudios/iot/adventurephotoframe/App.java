@@ -1,4 +1,4 @@
-package com.darkrockstudios.apps.adventurephotoframe;
+package com.darkrockstudios.iot.adventurephotoframe;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
@@ -7,7 +7,7 @@ import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
 
-import com.darkrockstudios.apps.adventurephotoframe.api.Networking;
+import com.darkrockstudios.iot.adventurephotoframe.api.Networking;
 
 import java.util.UUID;
 

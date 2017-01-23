@@ -5,7 +5,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.darkrockstudios.apps.adventurephotoframe.MainActivity">
+    tools:context="com.darkrockstudios.iot.adventurephotoframe.MainActivity">
 
     <ImageView
         android:id="@+id/PHOTOFRAME_photo"

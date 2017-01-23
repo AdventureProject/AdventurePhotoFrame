@@ -1,4 +1,4 @@
-package com.darkrockstudios.apps.adventurephotoframe;
+package com.darkrockstudios.iot.adventurephotoframe;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -11,6 +11,7 @@ import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.text.format.Formatter;
 import android.util.Log;
 import android.view.View;
@@ -26,7 +27,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static com.darkrockstudios.apps.adventurephotoframe.Settings.getUpdateFrequency;
+import static com.darkrockstudios.iot.adventurephotoframe.Settings.getUpdateFrequency;
 
 public class SettingsActivity extends BaseActivity
 {
@@ -110,7 +111,14 @@ public class SettingsActivity extends BaseActivity
 		wifiInfo = m_wifiManager.getConnectionInfo();
 		if( wifiInfo.getSupplicantState() == SupplicantState.COMPLETED )
 		{
-			ssid = wifiInfo.getSSID();
+			if( wifiInfo.getHiddenSSID() )
+			{
+
+			}
+			else
+			{
+				ssid = wifiInfo.getSSID();
+			}
 		}
 
 		m_ssidView.setText( getString( R.string.SETTINGS_wifi_ssid, (ssid == null ? "none" : ssid) ) );
@@ -216,7 +224,13 @@ public class SettingsActivity extends BaseActivity
 			{
 				List<ScanResult> scanResults = m_wifiManager.getScanResults();
 				m_avalibleNetworksAdapter.clear();
-				m_avalibleNetworksAdapter.addAll( scanResults );
+				for( ScanResult result : scanResults )
+				{
+					if( !TextUtils.isEmpty( result.SSID ) )
+					{
+						m_avalibleNetworksAdapter.add( result );
+					}
+				}
 				m_avalibleNetworksAdapter.notifyDataSetChanged();
 			}
 		}

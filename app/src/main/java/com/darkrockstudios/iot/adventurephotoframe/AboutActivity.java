@@ -1,4 +1,4 @@
-package com.darkrockstudios.apps.adventurephotoframe;
+package com.darkrockstudios.iot.adventurephotoframe;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -37,5 +37,11 @@ public class AboutActivity extends BaseActivity
 	{
 		startActivity( new Intent( this, WelcomeActivity.class ) );
 		finish();
+	}
+
+	@OnClick(R.id.ABOUT_reboot)
+	public void onRebootClick()
+	{
+
 	}
 }
