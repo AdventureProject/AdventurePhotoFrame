@@ -1,6 +1,11 @@
 package com.darkrockstudios.iot.adventurephotoframe;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -31,14 +36,19 @@ public class MainActivity extends BaseActivity
 	@BindView(R.id.TUTORIAL_container)
 	View m_tutorialView;
 
+	@BindView(R.id.PHOTOFRAME_wifi_down)
+	ImageView m_wifiDownView;
+
 	private Photo m_currentPhoto;
 
 	private Handler         m_handler;
 	private UpdatePhotoTask m_updateTask;
-	
+
 	private long m_updateFrequency;
 
-	private static final long FAILURE_BACKOFF  = 1L * 60L * 1000L;
+	private static final long FAILURE_BACKOFF = 1L * 60L * 1000L;
+
+	private ConnectionStateReceiver m_connectionListener;
 
 	@Override
 	protected void onCreate( Bundle savedInstanceState )
@@ -46,22 +56,31 @@ public class MainActivity extends BaseActivity
 		super.onCreate( savedInstanceState );
 
 		m_updateFrequency = Settings.getUpdateFrequency( this );
-		
+
 		m_handler = new Handler();
 		m_updateTask = new UpdatePhotoTask();
 		requestNewPhoto();
 
 		handleFirstRun();
+
+		m_connectionListener = new ConnectionStateReceiver();
 	}
 
 	private void handleFirstRun()
 	{
 		if( Settings.getFirstRun( this ) )
 		{
-			Settings.setFirstRunDone( this );
-
 			startActivity( new Intent( this, WelcomeActivity.class ) );
 		}
+	}
+
+	@Override
+	protected void onStart()
+	{
+		super.onStart();
+
+		IntentFilter intentFilter = new IntentFilter( ConnectivityManager.CONNECTIVITY_ACTION );
+		registerReceiver( m_connectionListener, intentFilter );
 	}
 
 	@Override
@@ -71,6 +90,8 @@ public class MainActivity extends BaseActivity
 		m_updateFrequency = Settings.getUpdateFrequency( this );
 
 		scheduleUpdateTask( m_updateFrequency );
+
+		updateConnectionStatus();
 	}
 
 	@Override
@@ -78,6 +99,14 @@ public class MainActivity extends BaseActivity
 	{
 		super.onPause();
 		m_handler.removeCallbacks( m_updateTask );
+	}
+
+	@Override
+	protected void onStop()
+	{
+		super.onStop();
+
+		unregisterReceiver( m_connectionListener );
 	}
 
 	@Override
@@ -113,10 +142,20 @@ public class MainActivity extends BaseActivity
 		Picasso.with( this )
 		       .load( m_currentPhoto.image )
 		       .placeholder( R.drawable.loading )
-		       .error( R.drawable.wifi_down )
+		       .error( R.drawable.no_image )
 		       .resize( m_photoView.getMeasuredWidth(), m_photoView.getMeasuredHeight() )
 		       .centerCrop()
 		       .into( m_photoView, new ImageCallback() );
+	}
+
+	private void updateConnectionStatus()
+	{
+		ConnectivityManager cm = (ConnectivityManager) getSystemService( Context.CONNECTIVITY_SERVICE );
+
+		NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+		boolean isConnected = activeNetwork != null && activeNetwork.isConnected();
+
+		m_wifiDownView.setVisibility( isConnected ? View.GONE : View.VISIBLE );
 	}
 
 	private void showTutorial()
@@ -244,6 +283,15 @@ public class MainActivity extends BaseActivity
 		public void run()
 		{
 			requestNewPhoto();
+		}
+	}
+
+	private class ConnectionStateReceiver extends BroadcastReceiver
+	{
+		@Override
+		public void onReceive( Context context, Intent intent )
+		{
+			updateConnectionStatus();
 		}
 	}
 }

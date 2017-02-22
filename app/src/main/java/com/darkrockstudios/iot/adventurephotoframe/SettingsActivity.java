@@ -11,12 +11,14 @@ import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.text.format.Formatter;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -29,7 +31,7 @@ import butterknife.OnClick;
 
 import static com.darkrockstudios.iot.adventurephotoframe.Settings.getUpdateFrequency;
 
-public class SettingsActivity extends BaseActivity
+public class SettingsActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener
 {
 	private static final String TAG                    = SettingsActivity.class.getSimpleName();
 	private static final String WIFI_CONFIG_DIALOG_TAG = "WIFI_CONFIG_DIALOG";
@@ -52,6 +54,12 @@ public class SettingsActivity extends BaseActivity
 
 	@BindView(R.id.SETTINGS_wifi_loading)
 	View m_loadingContainer;
+
+	@BindView(R.id.DEBUG)
+	Button m_debugButton;
+
+	@BindView(R.id.SETTINGS_available_networks_refresh)
+	SwipeRefreshLayout m_refreshLayout;
 
 	private WifiReceiver        m_connectionReceiver;
 	private NetworkScanReceiver m_scanReceiver;
@@ -80,6 +88,23 @@ public class SettingsActivity extends BaseActivity
 		m_frequencySeekBar.setOnSeekBarChangeListener( new FrequencyChangeListener() );
 
 		updateWifiInfo();
+
+		m_refreshLayout.setOnRefreshListener( this );
+	}
+
+	@Override
+	protected void onStart()
+	{
+		super.onStart();
+
+		if( BuildConfig.DEBUG )
+		{
+			m_debugButton.setVisibility( View.VISIBLE );
+		}
+		else
+		{
+			m_debugButton.setVisibility( View.GONE );
+		}
 	}
 
 	@Override
@@ -88,7 +113,7 @@ public class SettingsActivity extends BaseActivity
 		super.onResume();
 
 		registerReceiver( m_scanReceiver, new IntentFilter( WifiManager.SCAN_RESULTS_AVAILABLE_ACTION ) );
-		registerReceiver( m_connectionReceiver, new IntentFilter( "android.net.wifi.STATE_CHANGE" ) );
+		registerReceiver( m_connectionReceiver, new IntentFilter( WifiManager.NETWORK_STATE_CHANGED_ACTION ) );
 
 		m_wifiManager.startScan();
 	}
@@ -182,6 +207,19 @@ public class SettingsActivity extends BaseActivity
 		catch( Exception ignored )
 		{
 		}
+	}
+
+	@Override
+	public void onRefresh()
+	{
+		m_refreshLayout.setRefreshing( false );
+
+		m_avalibleNetworksAdapter.clear();
+		m_avalibleNetworksAdapter.notifyDataSetChanged();
+
+		hideWifi();
+
+		m_wifiManager.startScan();
 	}
 
 	private class FrequencyChangeListener implements SeekBar.OnSeekBarChangeListener

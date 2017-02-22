@@ -17,10 +17,11 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMediumInverse"/>
 
-    <TextView
-        android:id="@+id/WIFI_ITEM_security"
-        tools:text="security"
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmallInverse"/>
+        android:id="@+id/WIFI_ITEM_signal_strength"
+        android:progressBackgroundTint="@color/off_light"/>
+
 </LinearLayout>

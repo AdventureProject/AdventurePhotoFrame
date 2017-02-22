@@ -62,6 +62,8 @@ public class WelcomeActivity extends AppIntro
 	{
 		super.onDonePressed( currentFragment );
 
+		Settings.setFirstRunDone( this );
+
 		startActivity( new Intent( this, SettingsActivity.class ) );
 	}
 }

@@ -82,10 +82,8 @@ public class WifiConfigDialog extends BaseFragment
 	{
 		String password = m_passwordView.getText().toString();
 		String ssid = m_ssidView.getText().toString();
-		if( !TextUtils.isEmpty( password ) )
-		{
-			connectToWifi( ssid, password );
-		}
+
+		connectToWifi( ssid, password );
 	}
 
 	private void connectToWifi( String ssid, String password )
@@ -95,8 +93,14 @@ public class WifiConfigDialog extends BaseFragment
 		conf.SSID = "\"" + ssid + "\"";
 		conf.hiddenSSID = (m_wifiNetwork == null);
 
-		conf.preSharedKey = "\"" + password + "\"";
-		//conf.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
+		if( TextUtils.isEmpty( password ) )
+		{
+			conf.allowedKeyManagement.set( WifiConfiguration.KeyMgmt.NONE );
+		}
+		else
+		{
+			conf.preSharedKey = "\"" + password + "\"";
+		}
 
 		conf.status = WifiConfiguration.Status.ENABLED;
 
