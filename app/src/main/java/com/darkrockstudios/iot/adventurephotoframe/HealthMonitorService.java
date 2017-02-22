@@ -20,8 +20,10 @@ public class HealthMonitorService extends JobService
 	{
 		Log.i( TAG, "Checking in with Health Monitor..." );
 
+		String errorLog = ErrorHandler.readErrorFile( this );
 		Call<Void> call = App.get().getNetworking().m_photoFrameService.healthCheckIn( App.get().getPhotoFrameId(),
-		                                                                               BuildConfig.VERSION_CODE );
+		                                                                               BuildConfig.VERSION_CODE,
+		                                                                               errorLog );
 		call.enqueue( new Callback( params ) );
 
 		return true;
@@ -46,6 +48,7 @@ public class HealthMonitorService extends JobService
 		public void onResponse( Call<Void> call, Response<Void> response )
 		{
 			Log.i( TAG, "Health Check in complete" );
+			ErrorHandler.clearErrorFile( HealthMonitorService.this );
 			jobFinished( m_params, false );
 		}
 

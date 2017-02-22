@@ -6,6 +6,8 @@ import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.darkrockstudios.iot.adventurephotoframe.api.Networking;
 
@@ -17,6 +19,8 @@ import java.util.UUID;
 
 public class App extends Application
 {
+	private static final String TAG = App.class.getSimpleName();
+
 	private static App m_app;
 
 	public static App get()
@@ -44,7 +48,7 @@ public class App extends Application
 
 			Settings.setPhotoFrameId( this, photoFrameId );
 
-			healthMonitorInitialCheckin();
+			healthMonitorInitialCheckin( this );
 		}
 
 		return photoFrameId;
@@ -53,6 +57,8 @@ public class App extends Application
 	@Override
 	public void onCreate()
 	{
+		setupErrorHandling();
+
 		super.onCreate();
 		m_app = this;
 
@@ -70,6 +76,21 @@ public class App extends Application
 		*/
 	}
 
+	private void setupErrorHandling()
+	{
+		// Setup handler for uncaught exceptions.
+		Thread.setDefaultUncaughtExceptionHandler( new Thread.UncaughtExceptionHandler()
+		{
+			@Override
+			public void uncaughtException( Thread thread, Throwable e )
+			{
+				Log.e( TAG, "Unhandled Exception", e );
+
+				ErrorHandler.writeErrorToFile( thread, e, App.this );
+			}
+		} );
+	}
+
 	private void setupHealthMonitor()
 	{
 		ComponentName serviceComponent = new ComponentName( this, HealthMonitorService.class );
@@ -81,12 +102,11 @@ public class App extends Application
 
 		JobScheduler jobScheduler = (JobScheduler) getSystemService( Context.JOB_SCHEDULER_SERVICE );
 		jobScheduler.schedule( builder.build() );
-
 	}
 
-	private void healthMonitorInitialCheckin()
+	private static void healthMonitorInitialCheckin( @NonNull final Context context )
 	{
-		ComponentName serviceComponent = new ComponentName( this, HealthMonitorService.class );
+		ComponentName serviceComponent = new ComponentName( context, HealthMonitorService.class );
 
 		JobInfo.Builder builder = new JobInfo.Builder( HealthMonitorService.JOB_ID_INITIAL, serviceComponent );
 		builder.setRequiredNetworkType( JobInfo.NETWORK_TYPE_ANY );
@@ -95,8 +115,7 @@ public class App extends Application
 		builder.setPersisted( true );
 		builder.setBackoffCriteria( 1000, JobInfo.BACKOFF_POLICY_EXPONENTIAL );
 
-		JobScheduler jobScheduler = (JobScheduler) getSystemService( Context.JOB_SCHEDULER_SERVICE );
+		JobScheduler jobScheduler = (JobScheduler) context.getSystemService( Context.JOB_SCHEDULER_SERVICE );
 		jobScheduler.schedule( builder.build() );
-
 	}
 }
