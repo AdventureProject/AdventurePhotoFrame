@@ -137,15 +137,22 @@ public class MainActivity extends BaseActivity
 	{
 		m_currentPhoto = photo;
 
-		Log.i( TAG, "Loading image: " + photo.image );
+		if( m_photoView != null )
+		{
+			Log.i( TAG, "Loading image: " + photo.image );
 
-		Picasso.with( this )
-		       .load( m_currentPhoto.image )
-		       .placeholder( R.drawable.loading )
-		       .error( R.drawable.no_image )
-		       .resize( m_photoView.getMeasuredWidth(), m_photoView.getMeasuredHeight() )
-		       .centerCrop()
-		       .into( m_photoView, new ImageCallback() );
+			Picasso.with( this )
+			       .load( m_currentPhoto.image )
+			       .placeholder( R.drawable.loading )
+			       .error( R.drawable.no_image )
+			       .resize( m_photoView.getMeasuredWidth(), m_photoView.getMeasuredHeight() )
+			       .centerCrop()
+			       .into( m_photoView, new ImageCallback() );
+		}
+		else
+		{
+			Log.i( TAG, "Can't load image, View is not ready." );
+		}
 	}
 
 	private void updateConnectionStatus()
