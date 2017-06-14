@@ -19,18 +19,18 @@ import kotlinx.android.synthetic.main.wifi_config_dialog.*
 
 class WifiConfigDialog : BaseFragment()
 {
-	public companion object
+	companion object
 	{
-		public fun newInstance(wifiNetwork: ScanResult?): WifiConfigDialog = WifiConfigDialog().apply {
+		fun newInstance(wifiNetwork: ScanResult?): WifiConfigDialog = WifiConfigDialog().apply {
 			m_wifiNetwork = wifiNetwork
 		}
 
-		public fun newInstance(): WifiConfigDialog = WifiConfigDialog().apply {
+		fun newInstance(): WifiConfigDialog = WifiConfigDialog().apply {
 			m_wifiNetwork = null
 		}
 	}
 
-	var m_wifiNetwork: ScanResult? by bindOptionalArgument<ScanResult>()
+	private var m_wifiNetwork: ScanResult? by bindOptionalArgument<ScanResult>()
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?)
 	{

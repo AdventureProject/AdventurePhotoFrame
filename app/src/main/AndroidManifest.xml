@@ -1,89 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.darkrockstudios.iot.adventurephotoframe">
+		  package="com.darkrockstudios.iot.adventurephotoframe">
 
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+	<uses-permission android:name="android.permission.INTERNET"/>
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+	<uses-permission android:name="android.permission.WRITE_SETTINGS"/>
 
-    <application
-        android:name=".App"
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <uses-library android:name="com.google.android.things"/>
+	<application
+		android:name=".App"
+		android:allowBackup="true"
+		android:icon="@mipmap/ic_launcher"
+		android:label="@string/app_name"
+		android:supportsRtl="true"
+		android:theme="@style/AppTheme">
+		<uses-library android:name="com.google.android.things"/>
 
-        <activity
-            android:name=".MainActivity"
-            android:launchMode="singleTop">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+		<activity
+			android:name=".MainActivity"
+			android:launchMode="singleTop">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+				<category android:name="android.intent.category.LAUNCHER"/>
+			</intent-filter>
 
-            <!-- Launch activity automatically on boot -->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+			<!-- Launch activity automatically on boot -->
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.IOT_LAUNCHER"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".PhotoInfoActivity"
-            android:label="@string/title_activity_photo_info"
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"/>
-        </activity>
-        <activity
-            android:name=".DebugActivity"
-            android:label="@string/DEBUG_title"
-            android:parentActivityName=".SettingsActivity"
-            android:theme="@style/SettingsTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".SettingsActivity"/>
-        </activity>
-        <activity
-            android:name=".SettingsActivity"
-            android:label="@string/SETTINGS_title"
-            android:launchMode="singleTop"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/SettingsTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"/>
-        </activity>
-        <activity
-            android:name=".AboutActivity"
-            android:label="@string/ABOUT_title"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/SettingsTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"/>
-        </activity>
+				<category android:name="android.intent.category.IOT_LAUNCHER"/>
+				<category android:name="android.intent.category.DEFAULT"/>
+			</intent-filter>
+		</activity>
+		<activity
+			android:name=".PhotoInfoActivity"
+			android:label="@string/title_activity_photo_info"
+			android:parentActivityName=".MainActivity"
+			android:noHistory="true">
+			<meta-data
+				android:name="android.support.PARENT_ACTIVITY"
+				android:value=".MainActivity"/>
+		</activity>
+		<activity
+			android:name=".DebugActivity"
+			android:label="@string/DEBUG_title"
+			android:parentActivityName=".SettingsActivity"
+			android:theme="@style/SettingsTheme">
+			<meta-data
+				android:name="android.support.PARENT_ACTIVITY"
+				android:value=".SettingsActivity"/>
+		</activity>
+		<activity
+			android:name=".SettingsActivity"
+			android:label="@string/SETTINGS_title"
+			android:launchMode="singleTop"
+			android:parentActivityName=".MainActivity"
+			android:theme="@style/SettingsTheme">
+			<meta-data
+				android:name="android.support.PARENT_ACTIVITY"
+				android:value=".MainActivity"/>
+		</activity>
+		<activity
+			android:name=".AboutActivity"
+			android:label="@string/ABOUT_title"
+			android:parentActivityName=".MainActivity"
+			android:theme="@style/SettingsTheme">
+			<meta-data
+				android:name="android.support.PARENT_ACTIVITY"
+				android:value=".MainActivity"/>
+		</activity>
 
-        <service
-            android:name=".HealthMonitorService"
-            android:permission="android.permission.BIND_JOB_SERVICE">
-        </service>
+		<service
+			android:name=".HealthMonitorService"
+			android:permission="android.permission.BIND_JOB_SERVICE">
+		</service>
 
-        <activity
-            android:name=".WelcomeActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:label="@string/WELCOME_title">
-        </activity>
-    </application>
+		<activity
+			android:name=".WelcomeActivity"
+			android:theme="@style/Theme.AppCompat.NoActionBar"
+			android:label="@string/WELCOME_title">
+		</activity>
+	</application>
 
 </manifest>

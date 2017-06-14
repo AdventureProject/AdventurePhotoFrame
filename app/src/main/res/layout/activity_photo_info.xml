@@ -43,4 +43,11 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:background="@drawable/bottom_text_fade"
         tools:text="1/12/03"/>
+
+    <ProgressBar
+        android:id="@+id/PHOTOINFO_loading"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
 </FrameLayout>

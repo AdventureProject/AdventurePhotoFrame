@@ -16,7 +16,7 @@ class Networking
 
 	init
 	{
-		m_httpClient = OkHttpClient()
+		m_httpClient = OkHttpClient().newBuilder().retryOnConnectionFailure(true).build()
 
 		m_retrofit = Retrofit.Builder()
 				.baseUrl("http://wethinkadventure.rocks/")

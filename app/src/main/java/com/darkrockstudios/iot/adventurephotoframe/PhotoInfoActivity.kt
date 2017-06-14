@@ -10,7 +10,11 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_photo_info.*
 import me.eugeniomarletti.extras.ActivityCompanion
 import me.eugeniomarletti.extras.intent.IntentExtra
+import me.eugeniomarletti.extras.intent.base.Long
 import me.eugeniomarletti.extras.intent.base.Parcelable
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class PhotoInfoActivity : BaseActivity()
 {
@@ -22,6 +26,7 @@ class PhotoInfoActivity : BaseActivity()
 	object IntentOptions
 	{
 		var Intent.photoInfo by IntentExtra.Parcelable<Photo>()
+		var Intent.photoId by IntentExtra.Long()
 	}
 
 	override fun onCreate(savedInstanceState: Bundle?)
@@ -29,27 +34,80 @@ class PhotoInfoActivity : BaseActivity()
 		super.onCreate(savedInstanceState)
 
 		with(PhotoInfoActivity.IntentOptions) {
-			PHOTOINFO_title.text = intent.photoInfo?.title
-			PHOTOINFO_date.text = intent.photoInfo?.date
-
-			val location = intent.photoInfo?.location
-			if (location != null && !TextUtils.isEmpty(location))
+			if (intent.photoInfo != null)
 			{
-				Picasso.with(this@PhotoInfoActivity)
-						.load(getZoomedInMapUrl(location))
-						.into(PHOTOINFO_map_close)
-
-				Picasso.with(this@PhotoInfoActivity)
-						.load(getZoomedOutMapUrl(location))
-						.into(PHOTOINFO_map_far)
+				Log.d(TAG, "Photo was supplied.")
+				intent.photoInfo?.let { photo -> updatePhoto(photo) }
 			}
 			else
 			{
-				Log.i(TAG, "No Location for Photo")
+				if (intent.photoId != null)
+				{
+					intent.photoId?.let { photoId ->
+						val call = App.inst.networking.m_photoFrameService.getPhotoById(App.inst.photoFrameId, photoId)
+						Log.d(TAG, "Requesting photo info... " + photoId)
+						call.enqueue(PhotoCallback())
+					}
+				}
+				else
+				{
+					Log.i(TAG, "Not enough data provided to show details")
+					finish()
+				}
 			}
 		}
 
 		PHOTOINFO_container.setOnClickListener(this::onClose)
+	}
+
+	private inner class PhotoCallback : Callback<Photo>
+	{
+		override fun onResponse(call: Call<Photo>, response: Response<Photo>)
+		{
+			Log.d(TAG, "Got photo info...")
+			val photo = response.body()
+			if (photo != null)
+			{
+				Log.d(TAG, photo.toString())
+				updatePhoto(photo)
+			}
+			else
+			{
+				PHOTOINFO_loading.visibility = View.GONE
+				finish()
+			}
+		}
+
+		override fun onFailure(call: Call<Photo>, t: Throwable)
+		{
+			Log.w(TAG, "Failed to get photo info... " + t)
+			PHOTOINFO_loading.visibility = View.GONE
+			finish()
+		}
+	}
+
+	private fun updatePhoto(photo: Photo)
+	{
+		PHOTOINFO_loading.visibility = View.GONE
+
+		PHOTOINFO_title.text = photo.title
+		PHOTOINFO_date.text = photo.date
+
+		val location = photo.location
+		if (location != null && !TextUtils.isEmpty(location))
+		{
+			Picasso.with(this)
+					.load(getZoomedInMapUrl(location))
+					.into(PHOTOINFO_map_close)
+
+			Picasso.with(this)
+					.load(getZoomedOutMapUrl(location))
+					.into(PHOTOINFO_map_far)
+		}
+		else
+		{
+			Log.i(TAG, "No Location for Photo")
+		}
 	}
 
 	override val contentLayout: Int
