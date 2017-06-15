@@ -12,15 +12,19 @@ import me.eugeniomarletti.extras.ActivityCompanion
 import me.eugeniomarletti.extras.intent.IntentExtra
 import me.eugeniomarletti.extras.intent.base.Long
 import me.eugeniomarletti.extras.intent.base.Parcelable
+import org.joda.time.format.DateTimeFormat
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
+
 
 class PhotoInfoActivity : BaseActivity()
 {
 	companion object : ActivityCompanion<IntentOptions>(IntentOptions, PhotoInfoActivity::class)
 	{
 		private val TAG = PhotoInfoActivity::class.java.simpleName
+		private const val AUTO_HIDE = 5000L
 	}
 
 	object IntentOptions
@@ -29,9 +33,15 @@ class PhotoInfoActivity : BaseActivity()
 		var Intent.photoId by IntentExtra.Long()
 	}
 
+	private lateinit var m_timer: Timer
+	private var m_autoCloseTask: AutoDescriptionCloseTask? = AutoDescriptionCloseTask()
+
 	override fun onCreate(savedInstanceState: Bundle?)
 	{
 		super.onCreate(savedInstanceState)
+
+		m_timer = Timer()
+		m_timer.schedule(AutoDescriptionCloseTask(), AUTO_HIDE)
 
 		with(PhotoInfoActivity.IntentOptions) {
 			if (intent.photoInfo != null)
@@ -58,6 +68,23 @@ class PhotoInfoActivity : BaseActivity()
 		}
 
 		PHOTOINFO_container.setOnClickListener(this::onClose)
+	}
+
+	override fun onPause()
+	{
+		super.onPause()
+
+		// Cancel any remaining timers
+		m_timer.cancel()
+	}
+
+	private inner class AutoDescriptionCloseTask : TimerTask()
+	{
+		override fun run()
+		{
+			Log.d(TAG, "Auto-hiding description")
+			runOnUiThread { PHOTOINFO_description.visibility = View.GONE }
+		}
 	}
 
 	private inner class PhotoCallback : Callback<Photo>
@@ -91,7 +118,15 @@ class PhotoInfoActivity : BaseActivity()
 		PHOTOINFO_loading.visibility = View.GONE
 
 		PHOTOINFO_title.text = photo.title
-		PHOTOINFO_date.text = photo.date
+		PHOTOINFO_description.text = photo.description
+
+		val inputFormat = DateTimeFormat.forPattern("yyy-MM-dd HH:mm:ss")
+		val dateTime = inputFormat.parseDateTime(photo.date)
+		val outputFormat = DateTimeFormat.forPattern("EEEE, MMMM ee, yyyy - HH:mm")
+
+		PHOTOINFO_date.text = outputFormat.print(dateTime)
+
+		PHOTOINFO_title.setOnClickListener(this::toggleDescription)
 
 		val location = photo.location
 		if (location != null && !TextUtils.isEmpty(location))
@@ -107,6 +142,23 @@ class PhotoInfoActivity : BaseActivity()
 		else
 		{
 			Log.i(TAG, "No Location for Photo")
+		}
+	}
+
+	private fun toggleDescription(view: View)
+	{
+		m_autoCloseTask?.let {
+			it.cancel()
+			m_autoCloseTask = null
+		}
+
+		if (PHOTOINFO_description.visibility == View.GONE)
+		{
+			PHOTOINFO_description.visibility = View.VISIBLE
+		}
+		else
+		{
+			PHOTOINFO_description.visibility = View.GONE
 		}
 	}
 
