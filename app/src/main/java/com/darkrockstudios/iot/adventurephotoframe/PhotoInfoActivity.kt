@@ -120,11 +120,8 @@ class PhotoInfoActivity : BaseActivity()
 		PHOTOINFO_title.text = photo.title
 		PHOTOINFO_description.text = photo.description
 
-		val inputFormat = DateTimeFormat.forPattern("yyy-MM-dd HH:mm:ss")
-		val dateTime = inputFormat.parseDateTime(photo.date)
-		val outputFormat = DateTimeFormat.forPattern("EEEE, MMMM ee, yyyy - HH:mm")
-
-		PHOTOINFO_date.text = outputFormat.print(dateTime)
+		val dateTime = DateTimeFormat.forPattern("yyy-MM-dd HH:mm:ss").parseDateTime(photo.date)
+		PHOTOINFO_date.text = DateTimeFormat.forPattern("EEEE, MMMM ee, yyyy - HH:mm").print(dateTime)
 
 		PHOTOINFO_title.setOnClickListener(this::toggleDescription)
 
