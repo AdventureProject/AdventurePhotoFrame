@@ -24,7 +24,8 @@ class PhotoInfoActivity : BaseActivity()
 	companion object : ActivityCompanion<IntentOptions>(IntentOptions, PhotoInfoActivity::class)
 	{
 		private val TAG = PhotoInfoActivity::class.java.simpleName
-		private const val AUTO_HIDE = 5000L
+		private const val AUTO_HIDE = 5L * 1000L
+		private const val AUTO_CLOSE = 5L * 60L * 1000L
 	}
 
 	object IntentOptions
@@ -34,14 +35,16 @@ class PhotoInfoActivity : BaseActivity()
 	}
 
 	private lateinit var m_timer: Timer
-	private var m_autoCloseTask: AutoDescriptionCloseTask? = AutoDescriptionCloseTask()
+	private var m_autoCloseDescriptionTask: AutoDescriptionCloseTask? = AutoDescriptionCloseTask()
+	private var m_autoCloseTask: AutoCloseTask = AutoCloseTask()
 
 	override fun onCreate(savedInstanceState: Bundle?)
 	{
 		super.onCreate(savedInstanceState)
 
 		m_timer = Timer()
-		m_timer.schedule(AutoDescriptionCloseTask(), AUTO_HIDE)
+		m_timer.schedule(m_autoCloseDescriptionTask, AUTO_HIDE)
+		m_timer.schedule(m_autoCloseTask, AUTO_CLOSE)
 
 		with(PhotoInfoActivity.IntentOptions) {
 			if (intent.photoInfo != null)
@@ -68,14 +71,24 @@ class PhotoInfoActivity : BaseActivity()
 		}
 
 		PHOTOINFO_container.setOnClickListener(this::onClose)
+
+		PHOTOINFO_title.setOnClickListener(this::toggleDescription)
+		PHOTOINFO_description.setOnClickListener(this::toggleDescription)
 	}
 
-	override fun onPause()
+	override fun onStop()
 	{
-		super.onPause()
+		super.onStop()
 
 		// Cancel any remaining timers
 		m_timer.cancel()
+	}
+
+	private fun rescheduleAutoClose()
+	{
+		m_autoCloseTask.cancel()
+		m_autoCloseTask = AutoCloseTask()
+		m_timer.schedule(m_autoCloseTask, AUTO_CLOSE)
 	}
 
 	private inner class AutoDescriptionCloseTask : TimerTask()
@@ -84,6 +97,15 @@ class PhotoInfoActivity : BaseActivity()
 		{
 			Log.d(TAG, "Auto-hiding description")
 			runOnUiThread { PHOTOINFO_description.visibility = View.GONE }
+		}
+	}
+
+	private inner class AutoCloseTask : TimerTask()
+	{
+		override fun run()
+		{
+			Log.d(TAG, "Auto-closing")
+			runOnUiThread { finish() }
 		}
 	}
 
@@ -121,9 +143,7 @@ class PhotoInfoActivity : BaseActivity()
 		PHOTOINFO_description.text = photo.description
 
 		val dateTime = DateTimeFormat.forPattern("yyy-MM-dd HH:mm:ss").parseDateTime(photo.date)
-		PHOTOINFO_date.text = DateTimeFormat.forPattern("EEEE, MMMM ee, yyyy - HH:mm").print(dateTime)
-
-		PHOTOINFO_title.setOnClickListener(this::toggleDescription)
+		PHOTOINFO_date.text = DateTimeFormat.forPattern("HH:mm - EEEE, MMMM ee, yyyy").print(dateTime)
 
 		val location = photo.location
 		if (location != null && !TextUtils.isEmpty(location))
@@ -144,10 +164,13 @@ class PhotoInfoActivity : BaseActivity()
 
 	private fun toggleDescription(view: View)
 	{
-		m_autoCloseTask?.let {
+		m_autoCloseDescriptionTask?.let {
+			Log.d( TAG, "Canceling auto-dismiss description task." )
 			it.cancel()
-			m_autoCloseTask = null
+			m_autoCloseDescriptionTask = null
 		}
+
+		rescheduleAutoClose()
 
 		if (PHOTOINFO_description.visibility == View.GONE)
 		{

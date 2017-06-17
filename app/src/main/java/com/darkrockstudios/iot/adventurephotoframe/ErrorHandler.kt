@@ -3,6 +3,7 @@ package com.darkrockstudios.iot.adventurephotoframe
 import android.content.Context
 import android.util.Log
 import org.apache.commons.lang3.exception.ExceptionUtils
+import java.io.FileNotFoundException
 import java.io.IOException
 import java.io.InputStreamReader
 import java.io.OutputStreamWriter
@@ -67,6 +68,10 @@ object ErrorHandler
 				out.append(buffer, 0, rsz)
 			}
 			return out.toString()
+		}
+		catch (e: FileNotFoundException)
+		{
+
 		}
 		catch (e: IOException)
 		{
