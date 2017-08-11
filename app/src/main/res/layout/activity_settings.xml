@@ -52,7 +52,6 @@
         android:id="@+id/SETTINGS_wifi_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/default_padding"
         android:layout_marginStart="@dimen/default_margin"
         android:layout_toEndOf="@+id/SETTINGS_wifi_info_container"
         android:layout_alignParentEnd="true"
@@ -61,16 +60,22 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:layout_gravity="center_vertical"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/SETTINGS_wifi_networks_title"
             />
 
-        <Button
+        <ImageButton
             android:id="@+id/SETTINGS_wifi_hidden_network"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:text="@string/SETTINGS_hidden_network"/>
+            android:layout_gravity="center_vertical|end"
+            android:padding="@dimen/default_padding"
+            android:background="@drawable/selectable_item"
+            android:src="@drawable/ic_add"
+            android:contentDescription="@string/SETTINGS_hidden_network"/>
     </FrameLayout>
 
     <TextView

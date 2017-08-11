@@ -1,12 +1,16 @@
 <resources>
 
-    <dimen name="default_margin">16dp</dimen>
-    <dimen name="default_padding">16dp</dimen>
-    <dimen name="default_elevation">16dp</dimen>
+    <dimen name="default_margin">8dp</dimen>
+    <dimen name="default_padding">8dp</dimen>
+    <dimen name="default_elevation">8dp</dimen>
 
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_horizontal_margin">8dp</dimen>
+    <dimen name="activity_vertical_margin">8dp</dimen>
 
-    <dimen name="dialog_width">512dp</dimen>
+    <dimen name="dialog_width">320dp</dimen>
+
+    <dimen name="text_small">12sp</dimen>
+    <dimen name="text_medium">18sp</dimen>
+    <dimen name="text_large">24sp</dimen>
 
 </resources>
