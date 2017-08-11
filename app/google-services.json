@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1032308481835",
+    "firebase_url": "https://adventurephotoframe.firebaseio.com",
+    "project_id": "adventurephotoframe",
+    "storage_bucket": "adventurephotoframe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1032308481835:android:738493e4e582ea1c",
+        "android_client_info": {
+          "package_name": "com.darkrockstudios.iot.adventurephotoframe"
+***REMOVED***
+      },
+      "oauth_client": [
+        {
+          "client_id": "1032308481835-s26l4i76e6ira5i8cda70pvpent3q6po.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.darkrockstudios.iot.adventurephotoframe",
+            "certificate_hash": "906166159500c4ef52acfca64f511b3c0dac5a28"
+  ***REMOVED***
+***REMOVED***,
+        {
+          "client_id": "1032308481835-uj4spuj8bak55vpiuh9ml43drhuhrarj.apps.googleusercontent.com",
+          "client_type": 3
+***REMOVED***
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8Ljisc8OPdkdGE1kxkLh_bc_ILzMgQiM"
+***REMOVED***
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+***REMOVED***,
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1032308481835-uj4spuj8bak55vpiuh9ml43drhuhrarj.apps.googleusercontent.com",
+              "client_type": 3
+    ***REMOVED***
+          ]
+***REMOVED***,
+        "ads_service": {
+          "status": 2
+***REMOVED***
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
