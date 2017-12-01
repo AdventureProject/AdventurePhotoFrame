@@ -13,6 +13,7 @@ import com.darkrockstudios.iot.adventurephotoframe.data.Photo
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.tutorial.*
+import kotlinx.android.synthetic.main.tutorial_hotspots.*
 import me.eugeniomarletti.extras.SimpleActivityCompanion
 import retrofit2.Call
 import retrofit2.Callback
@@ -42,11 +43,20 @@ class MainActivity : BaseActivity()
 
 		m_updateFrequency = Settings.getUpdateFrequency(this)
 
-		TUTORIAL_tutorial.setOnClickListener(this::onTutorial)
-		TUTORIAL_next_photo.setOnClickListener(this::onNext)
 		TUTORIAL_photo_info.setOnClickListener(this::onPhotoInfo)
+		TUTORIAL_hotspots_container.setOnClickListener(this::onPhotoInfo)
+
+		TUTORIAL_tutorial.setOnClickListener(this::onTutorial)
+		TUTORIAL_tutorial_hotspot.setOnClickListener(this::onTutorial)
+
+		TUTORIAL_next_photo.setOnClickListener(this::onNext)
+		TUTORIAL_next_photo_hotspot.setOnClickListener(this::onNext)
+
 		TUTORIAL_settings.setOnClickListener(this::onSettings)
+		TUTORIAL_settings_hotspot.setOnClickListener(this::onSettings)
+
 		TUTORIAL_about.setOnClickListener(this::onAbout)
+		TUTORIAL_about_hotspot.setOnClickListener(this::onAbout)
 
 		requestNewPhoto()
 
@@ -148,6 +158,8 @@ class MainActivity : BaseActivity()
 
 	private fun showTutorial()
 	{
+		TUTORIAL_hotspots_container.visibility = View.GONE
+		TUTORIAL_container.visibility = View.VISIBLE
 		TUTORIAL_container.alpha = 1.0f
 		/*
 		ObjectAnimator anim = ObjectAnimator.ofFloat( TUTORIAL_container, "alpha", 0f, 1f );
@@ -158,6 +170,8 @@ class MainActivity : BaseActivity()
 
 	private fun hideTutorial()
 	{
+		TUTORIAL_hotspots_container.visibility = View.VISIBLE
+		TUTORIAL_container.visibility = View.GONE
 		TUTORIAL_container.alpha = 0.0f
 		/*
 		ObjectAnimator anim = ObjectAnimator.ofFloat( TUTORIAL_container, "alpha", 1f, 0f );

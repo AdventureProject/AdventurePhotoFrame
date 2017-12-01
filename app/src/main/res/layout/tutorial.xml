@@ -28,6 +28,7 @@
         android:elevation="@dimen/default_elevation"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:background="#673AB7"
+        android:foreground="?android:attr/selectableItemBackground"
         android:text="@string/TUTORIAL_about"
         />
 
@@ -41,6 +42,7 @@
         android:elevation="@dimen/default_elevation"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:background="#4CAF50"
+        android:foreground="?android:attr/selectableItemBackground"
         android:text="@string/TUTORIAL_settings"
         />
 
@@ -54,6 +56,7 @@
         android:elevation="@dimen/default_elevation"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:background="#FFA000"
+        android:foreground="?android:attr/selectableItemBackground"
         android:text="@string/TUTORIAL_tutorial"
         />
 
@@ -67,6 +70,7 @@
         android:elevation="@dimen/default_elevation"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:background="@color/accent"
+        android:foreground="?android:attr/selectableItemBackground"
         android:text="@string/TUTORIAL_next"
         />
 </android.support.percent.PercentRelativeLayout>

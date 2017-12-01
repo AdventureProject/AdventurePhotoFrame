@@ -46,7 +46,7 @@
     <string name="WELCOME_title">Welcome!</string>
 
     <string name="WELCOME_slide1_title">Adventure.Rocks</string>
-    <string name="WELCOME_slide1_description">Welcome to your Adventure.Rocks photo frame!\n\nThe next few screens will introduce you to what it can do. Lets get started!</string>
+    <string name="WELCOME_slide1_description">Welcome to your Adventure.Rocks photo frame!\nThe next few screens will introduce you to what it can do. Lets get started!</string>
     <color name="WELCOME_slide1_background">#2a2a2a</color>
 
     <string name="WELCOME_slide2_title">Photo\'s From Adam &amp; Stacy</string>
