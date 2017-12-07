@@ -4,13 +4,17 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.View
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.darkrockstudios.iot.adventurephotoframe.data.Photo
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.tutorial.*
 import kotlinx.android.synthetic.main.tutorial_hotspots.*
@@ -132,13 +136,14 @@ class MainActivity : BaseActivity()
 		{
 			Log.i(TAG, "Loading image: " + photo.image)
 
-			Picasso.with(this)
+			GlideApp.with(this)
 					.load(photo.image)
 					.placeholder(R.drawable.loading)
 					.error(R.drawable.no_image)
-					.resize(photoView.measuredWidth, photoView.measuredHeight)
+					//.resize(photoView.measuredWidth, photoView.measuredHeight)
 					.centerCrop()
-					.into(photoView, ImageCallback())
+					.listener(ImageCallback())
+					.into(photoView)
 		}
 		else
 		{
@@ -183,22 +188,26 @@ class MainActivity : BaseActivity()
 	private val isTutorialShowing: Boolean
 		get() = TUTORIAL_container.alpha == 1.0f
 
-	private inner class ImageCallback : com.squareup.picasso.Callback
+	private inner class ImageCallback : RequestListener<Drawable>
 	{
-		override fun onSuccess()
+		override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean
 		{
 			Log.i(TAG, "Image load successful!")
 			PHOTOFRAME_loading.visibility = View.GONE
 
 			scheduleUpdateTask(m_updateFrequency)
+
+			return false
 		}
 
-		override fun onError()
+		override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean
 		{
 			Log.w(TAG, "Image load failed.")
 			PHOTOFRAME_loading.visibility = View.GONE
 
 			scheduleUpdateTask(FAILURE_BACKOFF)
+
+			return false
 		}
 	}
 
@@ -212,6 +221,11 @@ class MainActivity : BaseActivity()
 			{
 				Log.d(TAG, photo.toString())
 				updatePhoto(photo)
+			}
+			else
+			{
+				Log.w(TAG, "Failed to get photo info from success")
+				scheduleUpdateTask(FAILURE_BACKOFF)
 			}
 		}
 

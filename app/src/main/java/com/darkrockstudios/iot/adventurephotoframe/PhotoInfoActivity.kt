@@ -6,13 +6,13 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import com.darkrockstudios.iot.adventurephotoframe.data.Photo
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_photo_info.*
 import me.eugeniomarletti.extras.ActivityCompanion
 import me.eugeniomarletti.extras.intent.IntentExtra
 import me.eugeniomarletti.extras.intent.base.Long
 import me.eugeniomarletti.extras.intent.base.Parcelable
 import org.joda.time.format.DateTimeFormat
+import org.unbescape.html.HtmlEscape
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -139,8 +139,8 @@ class PhotoInfoActivity : BaseActivity()
 	{
 		PHOTOINFO_loading.visibility = View.GONE
 
-		PHOTOINFO_title.text = photo.title
-		PHOTOINFO_description.text = photo.description
+		PHOTOINFO_title.text = HtmlEscape.unescapeHtml(photo.title)
+		PHOTOINFO_description.text = HtmlEscape.unescapeHtml(photo.description)
 
 		val dateTime = DateTimeFormat.forPattern("yyy-MM-dd HH:mm:ss").parseDateTime(photo.date)
 		PHOTOINFO_date.text = DateTimeFormat.forPattern("HH:mm - EEEE, MMMM ee, yyyy").print(dateTime)
@@ -148,12 +148,14 @@ class PhotoInfoActivity : BaseActivity()
 		val location = photo.location
 		if (location != null && !TextUtils.isEmpty(location))
 		{
-			Picasso.with(this)
+			GlideApp.with(this)
 					.load(getZoomedInMapUrl(location))
+					.placeholder(R.drawable.map_loading)
 					.into(PHOTOINFO_map_close)
 
-			Picasso.with(this)
+			GlideApp.with(this)
 					.load(getZoomedOutMapUrl(location))
+					.placeholder(R.drawable.map_loading)
 					.into(PHOTOINFO_map_far)
 		}
 		else
@@ -165,7 +167,7 @@ class PhotoInfoActivity : BaseActivity()
 	private fun toggleDescription(view: View)
 	{
 		m_autoCloseDescriptionTask?.let {
-			Log.d( TAG, "Canceling auto-dismiss description task." )
+			Log.d(TAG, "Canceling auto-dismiss description task.")
 			it.cancel()
 			m_autoCloseDescriptionTask = null
 		}
