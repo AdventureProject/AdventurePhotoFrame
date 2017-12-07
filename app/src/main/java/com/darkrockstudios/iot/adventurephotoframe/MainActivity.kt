@@ -225,6 +225,7 @@ class MainActivity : BaseActivity()
 			else
 			{
 				Log.w(TAG, "Failed to get photo info from success")
+				PHOTOFRAME_loading.visibility = View.GONE
 				scheduleUpdateTask(FAILURE_BACKOFF)
 			}
 		}
@@ -232,6 +233,7 @@ class MainActivity : BaseActivity()
 		override fun onFailure(call: Call<Photo>, t: Throwable)
 		{
 			Log.w(TAG, "Failed to get photo info... " + t)
+			PHOTOFRAME_loading.visibility = View.GONE
 			scheduleUpdateTask(FAILURE_BACKOFF)
 		}
 	}
