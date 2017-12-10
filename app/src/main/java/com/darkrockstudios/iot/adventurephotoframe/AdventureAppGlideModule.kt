@@ -16,7 +16,7 @@ class AdventureAppGlideModule : AppGlideModule()
 {
 	override fun applyOptions(context: Context, builder: GlideBuilder)
 	{
-		val diskCacheSizeBytes = 1024 * 1024 * 1024 * 1 // 1 GB
+		val diskCacheSizeBytes = 1024 * 1024 * 1024 * 1L // 1 GB
 		builder.setDiskCache(InternalCacheDiskCacheFactory(context, diskCacheSizeBytes))
 	}
 }

@@ -16,7 +16,7 @@ class AdventureFirebaseInstanceIDService : FirebaseInstanceIdService()
 	companion object
 	{
 		private const val KEY_REGISTERED = "registered_with_server"
-		fun registeredWithServer(context: Context): Boolean
+		fun isRegisteredWithServer(context: Context): Boolean
 		{
 			val settings = PreferenceManager.getDefaultSharedPreferences(context)
 			return settings.getBoolean(KEY_REGISTERED, false)
@@ -31,7 +31,7 @@ class AdventureFirebaseInstanceIDService : FirebaseInstanceIdService()
 		fun clearRegistered(context: Context)
 		{
 			val settings = PreferenceManager.getDefaultSharedPreferences(context)
-			settings.edit().putBoolean(KEY_REGISTERED, true).apply()
+			settings.edit().remove(KEY_REGISTERED).apply()
 		}
 	}
 
@@ -67,7 +67,7 @@ class AdventureFirebaseInstanceIDService : FirebaseInstanceIdService()
 
 		override fun onResponse(call: Call<RegistrationResponse>?, response: Response<RegistrationResponse>?)
 		{
-			if (response?.body()?.success ?: false)
+			if (response?.body()?.success == true)
 			{
 				Log.d("NFC", "Registration Success!")
 				markAsRegistered(this@AdventureFirebaseInstanceIDService)
