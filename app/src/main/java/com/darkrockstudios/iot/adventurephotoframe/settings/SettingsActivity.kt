@@ -49,43 +49,43 @@ class SettingsActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener
 				UpdateManagerStatus.STATE_IDLE                 ->
 				{
 					SETTINGS_update_button.isEnabled = false
-					SETTINGS_update_status.text = "Up to date"
+					SETTINGS_update_status.text = getString(R.string.SETTINGS_UPDATE_status_idle)
 					SETTINGS_update_progress.visibility = View.GONE
 				}
 				UpdateManagerStatus.STATE_REPORTING_ERROR      ->
 				{
 					SETTINGS_update_button.isEnabled = false
-					SETTINGS_update_status.text = "Error"
+					SETTINGS_update_status.text = getString(R.string.SETTINGS_UPDATE_status_error)
 					SETTINGS_update_progress.visibility = View.GONE
 				}
 				UpdateManagerStatus.STATE_CHECKING_FOR_UPDATES ->
 				{
 					SETTINGS_update_button.isEnabled = false
-					SETTINGS_update_status.text = "Checking for updates..."
+					SETTINGS_update_status.text = getString(R.string.SETTINGS_UPDATE_status_checking)
 					SETTINGS_update_progress.visibility = View.VISIBLE
 				}
 				UpdateManagerStatus.STATE_UPDATE_AVAILABLE     ->
 				{
 					SETTINGS_update_button.isEnabled = true
-					SETTINGS_update_status.text = "Update available!"
+					SETTINGS_update_status.text = getString(R.string.SETTINGS_UPDATE_status_available)
 					SETTINGS_update_progress.visibility = View.GONE
 				}
 				UpdateManagerStatus.STATE_DOWNLOADING_UPDATE   ->
 				{
 					SETTINGS_update_button.isEnabled = false
-					SETTINGS_update_status.text = "Downloading update..."
+					SETTINGS_update_status.text = getString(R.string.SETTINGS_UPDATE_status_downloading)
 					SETTINGS_update_progress.visibility = View.VISIBLE
 				}
 				UpdateManagerStatus.STATE_FINALIZING_UPDATE    ->
 				{
 					SETTINGS_update_button.isEnabled = false
-					SETTINGS_update_status.text = "Finalizing update..."
+					SETTINGS_update_status.text = getString(R.string.SETTINGS_UPDATE_status_finalizing)
 					SETTINGS_update_progress.visibility = View.VISIBLE
 				}
 				UpdateManagerStatus.STATE_UPDATED_NEEDS_REBOOT ->
 				{
 					SETTINGS_update_button.isEnabled = false
-					SETTINGS_update_status.text = "Reboot to finish update."
+					SETTINGS_update_status.text = getString(R.string.SETTINGS_UPDATE_status_reboot)
 					SETTINGS_update_progress.visibility = View.GONE
 				}
 			}
