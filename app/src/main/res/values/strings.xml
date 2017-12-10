@@ -79,5 +79,7 @@
 	<string name="ABOUT_welcome_rerun">Re-run Welcome tutorial</string>
 	<string name="ABOUT_reboot">Reboot</string>
 	<string name="SETTINGS_hidden_network">Add Network</string>
+	<string name="SETTINGS_update_button">Start Update</string>
+	<string name="SETTINGS_update_title">System Update</string>
 	<color name="WELCOME_slide8_background">#b2371c</color>
 </resources>
