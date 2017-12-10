@@ -1,4 +1,4 @@
-package com.darkrockstudios.iot.adventurephotoframe
+package com.darkrockstudios.iot.adventurephotoframe.base
 
 import android.app.Activity
 import android.os.Bundle

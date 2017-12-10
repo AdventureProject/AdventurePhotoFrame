@@ -1,5 +1,7 @@
-package com.darkrockstudios.iot.adventurephotoframe
+package com.darkrockstudios.iot.adventurephotoframe.pushmessaging
 
+import com.darkrockstudios.iot.adventurephotoframe.PersonalMessageActivity
+import com.darkrockstudios.iot.adventurephotoframe.PhotoInfoActivity
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 

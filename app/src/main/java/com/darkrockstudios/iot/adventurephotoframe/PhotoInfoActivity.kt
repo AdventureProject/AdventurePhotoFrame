@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
+import com.darkrockstudios.iot.adventurephotoframe.application.App
+import com.darkrockstudios.iot.adventurephotoframe.base.BaseActivity
 import com.darkrockstudios.iot.adventurephotoframe.data.Photo
 import kotlinx.android.synthetic.main.activity_photo_info.*
 import me.eugeniomarletti.extras.ActivityCompanion

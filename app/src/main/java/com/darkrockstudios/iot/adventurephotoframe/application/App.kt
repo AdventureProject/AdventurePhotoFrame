@@ -1,4 +1,4 @@
-package com.darkrockstudios.iot.adventurephotoframe
+package com.darkrockstudios.iot.adventurephotoframe.application
 
 import android.annotation.SuppressLint
 import android.app.Application
@@ -8,6 +8,9 @@ import android.content.ComponentName
 import android.content.Context
 import android.util.Log
 import com.darkrockstudios.iot.adventurephotoframe.api.Networking
+import com.darkrockstudios.iot.adventurephotoframe.healthmonitor.ErrorHandler
+import com.darkrockstudios.iot.adventurephotoframe.healthmonitor.HealthMonitorService
+import com.darkrockstudios.iot.adventurephotoframe.settings.Settings
 import java.util.*
 
 /**

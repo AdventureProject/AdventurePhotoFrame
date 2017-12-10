@@ -1,8 +1,10 @@
-package com.darkrockstudios.iot.adventurephotoframe
+package com.darkrockstudios.iot.adventurephotoframe.healthmonitor
 
 import android.app.job.JobParameters
 import android.app.job.JobService
 import android.util.Log
+import com.darkrockstudios.iot.adventurephotoframe.BuildConfig
+import com.darkrockstudios.iot.adventurephotoframe.application.App
 import retrofit2.Call
 import retrofit2.Response
 

@@ -2,6 +2,7 @@ package com.darkrockstudios.iot.adventurephotoframe
 
 import android.content.Intent
 import android.os.Bundle
+import com.darkrockstudios.iot.adventurephotoframe.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_personal_message.*
 import me.eugeniomarletti.extras.ActivityCompanion
 import me.eugeniomarletti.extras.intent.IntentExtra

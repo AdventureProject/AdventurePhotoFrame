@@ -14,7 +14,7 @@
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
 	<application
-		android:name=".App"
+		android:name=".application.App"
 		android:allowBackup="true"
 		android:icon="@mipmap/ic_launcher"
 		android:label="@string/app_name"
@@ -60,14 +60,14 @@
 		<activity
 			android:name=".DebugActivity"
 			android:label="@string/DEBUG_title"
-			android:parentActivityName=".SettingsActivity"
+			android:parentActivityName=".settings.SettingsActivity"
 			android:theme="@style/SettingsTheme">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
-				android:value=".SettingsActivity"/>
+				android:value=".settings.SettingsActivity"/>
 		</activity>
 		<activity
-			android:name=".SettingsActivity"
+			android:name=".settings.SettingsActivity"
 			android:label="@string/SETTINGS_title"
 			android:launchMode="singleTop"
 			android:parentActivityName=".MainActivity"
@@ -87,7 +87,7 @@
 		</activity>
 
 		<service
-			android:name=".HealthMonitorService"
+			android:name=".healthmonitor.HealthMonitorService"
 			android:permission="android.permission.BIND_JOB_SERVICE">
 		</service>
 
@@ -97,12 +97,12 @@
 			android:theme="@style/Theme.AppCompat.NoActionBar">
 		</activity>
 
-		<service android:name=".AdventureFirebaseMessagingService">
+		<service android:name=".pushmessaging.AdventureFirebaseMessagingService">
 			<intent-filter>
 				<action android:name="com.google.firebase.MESSAGING_EVENT"/>
 			</intent-filter>
 		</service>
-		<service android:name=".AdventureFirebaseInstanceIDService">
+		<service android:name=".pushmessaging.AdventureFirebaseInstanceIDService">
 			<intent-filter>
 				<action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
 			</intent-filter>

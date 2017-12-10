@@ -1,4 +1,4 @@
-package com.darkrockstudios.iot.adventurephotoframe
+package com.darkrockstudios.iot.adventurephotoframe.settings
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -17,6 +17,10 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.SeekBar
 import android.widget.Toast
+import com.darkrockstudios.iot.adventurephotoframe.BuildConfig
+import com.darkrockstudios.iot.adventurephotoframe.DebugActivity
+import com.darkrockstudios.iot.adventurephotoframe.R
+import com.darkrockstudios.iot.adventurephotoframe.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_settings.*
 import me.eugeniomarletti.extras.SimpleActivityCompanion
 

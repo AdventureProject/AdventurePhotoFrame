@@ -3,6 +3,8 @@ package com.darkrockstudios.iot.adventurephotoframe
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import com.darkrockstudios.iot.adventurephotoframe.settings.Settings
+import com.darkrockstudios.iot.adventurephotoframe.settings.SettingsActivity
 
 import com.github.paolorotolo.appintro.AppIntro
 import com.github.paolorotolo.appintro.AppIntroFragment

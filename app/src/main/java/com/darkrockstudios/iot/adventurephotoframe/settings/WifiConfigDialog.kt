@@ -1,4 +1,4 @@
-package com.darkrockstudios.iot.adventurephotoframe
+package com.darkrockstudios.iot.adventurephotoframe.settings
 
 import android.content.Context
 import android.net.wifi.ScanResult
@@ -10,6 +10,8 @@ import android.text.TextUtils
 import android.view.View
 import android.view.Window
 import android.widget.Toast
+import com.darkrockstudios.iot.adventurephotoframe.R
+import com.darkrockstudios.iot.adventurephotoframe.base.BaseFragment
 import com.github.vmironov.jetpack.arguments.bindOptionalArgument
 import kotlinx.android.synthetic.main.wifi_config_dialog.*
 

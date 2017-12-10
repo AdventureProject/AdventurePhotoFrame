@@ -14,7 +14,11 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import com.darkrockstudios.iot.adventurephotoframe.application.App
+import com.darkrockstudios.iot.adventurephotoframe.base.BaseActivity
 import com.darkrockstudios.iot.adventurephotoframe.data.Photo
+import com.darkrockstudios.iot.adventurephotoframe.settings.Settings
+import com.darkrockstudios.iot.adventurephotoframe.settings.SettingsActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.tutorial.*
 import kotlinx.android.synthetic.main.tutorial_hotspots.*

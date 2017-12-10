@@ -1,4 +1,4 @@
-package com.darkrockstudios.iot.adventurephotoframe
+package com.darkrockstudios.iot.adventurephotoframe.settings
 
 import android.content.Context
 import android.net.wifi.ScanResult
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import com.darkrockstudios.iot.adventurephotoframe.R
 
 /**
  * Created by adamw on 12/22/2016.

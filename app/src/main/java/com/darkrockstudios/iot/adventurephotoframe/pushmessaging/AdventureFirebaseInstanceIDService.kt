@@ -1,9 +1,10 @@
-package com.darkrockstudios.iot.adventurephotoframe
+package com.darkrockstudios.iot.adventurephotoframe.pushmessaging
 
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.preference.PreferenceManager
 import android.util.Log
+import com.darkrockstudios.iot.adventurephotoframe.application.App
 import com.darkrockstudios.iot.adventurephotoframe.data.RegistrationResponse
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.iid.FirebaseInstanceIdService

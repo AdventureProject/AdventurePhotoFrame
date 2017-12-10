@@ -3,6 +3,8 @@ package com.darkrockstudios.iot.adventurephotoframe
 import android.os.Bundle
 import android.support.annotation.LayoutRes
 import android.view.View
+import com.darkrockstudios.iot.adventurephotoframe.application.App
+import com.darkrockstudios.iot.adventurephotoframe.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_about.*
 import me.eugeniomarletti.extras.SimpleActivityCompanion
 

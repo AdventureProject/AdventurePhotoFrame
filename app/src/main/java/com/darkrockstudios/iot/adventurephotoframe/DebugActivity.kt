@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import com.darkrockstudios.iot.adventurephotoframe.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_debug.*
 
 class DebugActivity : BaseActivity()
