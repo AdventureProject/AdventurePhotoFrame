@@ -15,6 +15,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.darkrockstudios.iot.adventurephotoframe.application.App
+import com.darkrockstudios.iot.adventurephotoframe.application.GlideApp
 import com.darkrockstudios.iot.adventurephotoframe.base.BaseActivity
 import com.darkrockstudios.iot.adventurephotoframe.data.Photo
 import com.darkrockstudios.iot.adventurephotoframe.settings.Settings
