@@ -11,13 +11,13 @@ repositories {
 
 android {
     compileSdkVersion 27
-    buildToolsVersion '27.0.1'
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.darkrockstudios.iot.adventurephotoframe"
         minSdkVersion 27
         targetSdkVersion 27
-        versionCode 4
-        versionName "1.0"
+        versionCode 7
+        versionName "1.1"
     }
     buildTypes {
 ***REMOVED***
@@ -31,6 +31,18 @@ android {
 
 ***REMOVED***
     }
+
+    flavorDimensions "mode"
+
+    productFlavors {
+        iot {
+            dimension "mode"
+***REMOVED***
+        android {
+            dimension "mode"
+***REMOVED***
+    }
+
     buildTypes {
 ***REMOVED***
             debuggable false
@@ -49,7 +61,7 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-messaging:11.6.2'
 
-    compileOnly 'com.google.android.things:androidthings:0.6-devpreview'
+    iotProvided 'com.google.android.things:androidthings:0.6-devpreview'
 
     implementation 'com.google.code.gson:gson:2.8.0'
     implementation 'com.squareup.retrofit2:retrofit:2.1.0'

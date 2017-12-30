@@ -28,6 +28,7 @@
 	<string name="SETTINGS_WIFIDIALOG_ssid">SSID</string>
 	<string name="SETTINGS_WIFIDIALOG_password">Password</string>
 	<string name="SETTINGS_WIFIDIALOG_connect">Connect</string>
+	<string name="SETTINGS_WIFIDIALOG_cancel">Cancel</string>
 
 	<string name="ABOUT_title">About</string>
 
@@ -89,5 +90,6 @@
 	<string name="SETTINGS_UPDATE_status_finalizing">Finalizing update...</string>
 	<string name="SETTINGS_UPDATE_status_reboot">Reboot to finish update.</string>
 	<string name="SETTINGS_reboot_button">Reboot</string>
+	<string name="WIFIDIALOG_show_password">Show Password</string>
 	<color name="WELCOME_slide8_background">#b2371c</color>
 </resources>

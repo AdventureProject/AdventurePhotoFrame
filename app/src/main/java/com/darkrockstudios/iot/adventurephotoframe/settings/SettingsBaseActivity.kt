@@ -20,19 +20,14 @@ import android.widget.Toast
 import com.darkrockstudios.iot.adventurephotoframe.DebugActivity
 import com.darkrockstudios.iot.adventurephotoframe.R
 import com.darkrockstudios.iot.adventurephotoframe.base.BaseActivity
-import com.google.android.things.device.DeviceManager
-import com.google.android.things.update.StatusListener
-import com.google.android.things.update.UpdateManager
-import com.google.android.things.update.UpdateManagerStatus
 import kotlinx.android.synthetic.main.activity_settings.*
-import me.eugeniomarletti.extras.SimpleActivityCompanion
 
 
-class SettingsActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener
+abstract class SettingsBaseActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener
 {
-	companion object : SimpleActivityCompanion(SettingsActivity::class)
+	companion object
 	{
-		private val TAG = SettingsActivity::class.java.simpleName
+		private val TAG = SettingsBaseActivity::class.java.simpleName
 		private val WIFI_CONFIG_DIALOG_TAG = "WIFI_CONFIG_DIALOG"
 	}
 
@@ -41,59 +36,6 @@ class SettingsActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener
 	private lateinit var m_connectionReceiver: WifiReceiver
 	private lateinit var m_scanReceiver: NetworkScanReceiver
 	private lateinit var m_wifiManager: WifiManager
-
-	private val m_updateListener = StatusListener { status ->
-		runOnUiThread {
-			when (status.currentState)
-			{
-				UpdateManagerStatus.STATE_IDLE                 ->
-				{
-					SETTINGS_update_button.isEnabled = false
-					SETTINGS_update_status.text = getString(R.string.SETTINGS_UPDATE_status_idle)
-					SETTINGS_update_progress.visibility = View.GONE
-				}
-				UpdateManagerStatus.STATE_REPORTING_ERROR      ->
-				{
-					SETTINGS_update_button.isEnabled = false
-					SETTINGS_update_status.text = getString(R.string.SETTINGS_UPDATE_status_error)
-					SETTINGS_update_progress.visibility = View.GONE
-				}
-				UpdateManagerStatus.STATE_CHECKING_FOR_UPDATES ->
-				{
-					SETTINGS_update_button.isEnabled = false
-					SETTINGS_update_status.text = getString(R.string.SETTINGS_UPDATE_status_checking)
-					SETTINGS_update_progress.visibility = View.VISIBLE
-				}
-				UpdateManagerStatus.STATE_UPDATE_AVAILABLE     ->
-				{
-					SETTINGS_update_button.isEnabled = true
-					SETTINGS_update_status.text = getString(R.string.SETTINGS_UPDATE_status_available)
-					SETTINGS_update_progress.visibility = View.GONE
-				}
-				UpdateManagerStatus.STATE_DOWNLOADING_UPDATE   ->
-				{
-					SETTINGS_update_button.isEnabled = false
-					SETTINGS_update_status.text = getString(R.string.SETTINGS_UPDATE_status_downloading)
-					SETTINGS_update_progress.visibility = View.VISIBLE
-				}
-				UpdateManagerStatus.STATE_FINALIZING_UPDATE    ->
-				{
-					SETTINGS_update_button.isEnabled = false
-					SETTINGS_update_status.text = getString(R.string.SETTINGS_UPDATE_status_finalizing)
-					SETTINGS_update_progress.visibility = View.VISIBLE
-				}
-				UpdateManagerStatus.STATE_UPDATED_NEEDS_REBOOT ->
-				{
-					SETTINGS_update_button.isEnabled = false
-					SETTINGS_update_status.text = getString(R.string.SETTINGS_UPDATE_status_reboot)
-					SETTINGS_update_progress.visibility = View.GONE
-				}
-			}
-		}
-	}
-
-	private val m_updateManager = UpdateManager()
-	private val m_deviceManager = DeviceManager()
 
 	public override fun onCreate(savedInstanceState: Bundle?)
 	{
@@ -122,20 +64,6 @@ class SettingsActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener
 
 		SETTINGS_wifi_hidden_network.setOnClickListener(this::onHiddenNetwork)
 		//DEBUG.setOnClickListener(this::onDebug)
-
-		SETTINGS_reboot_button.setOnClickListener { m_deviceManager.reboot() }
-		SETTINGS_update_button.setOnClickListener { m_updateManager.performUpdateNow(UpdateManager.POLICY_APPLY_AND_REBOOT); }
-
-		m_updateManager.addStatusListener(m_updateListener)
-	}
-
-	private fun checkForUpdate()
-	{
-		SETTINGS_update_button.isEnabled = false
-		SETTINGS_update_status.text = ""
-
-		// Trigger an update check immediately
-		m_updateManager.performUpdateNow(UpdateManager.POLICY_CHECKS_ONLY)
 	}
 
 	override fun onResume()
@@ -147,8 +75,6 @@ class SettingsActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener
 
 		m_wifiManager.startScan()
 
-		checkForUpdate()
-
 		/*
 		if (BuildConfig.DEBUG)
 		{
@@ -159,13 +85,6 @@ class SettingsActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener
 			DEBUG.visibility = View.GONE
 		}
 		*/
-	}
-
-	override fun onDestroy()
-	{
-		super.onDestroy()
-
-		m_updateManager.removeStatusListener(m_updateListener)
 	}
 
 	override fun onPause()
@@ -271,7 +190,7 @@ class SettingsActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener
 		{
 			val minutes = progress + 1
 
-			Settings.setUpdateFrequency(this@SettingsActivity, minutes.toLong())
+			Settings.setUpdateFrequency(this@SettingsBaseActivity, minutes.toLong())
 			SETTINGS_frequency_display.text = getString(R.string.SETTINGS_frequency, minutes)
 		}
 
@@ -282,9 +201,9 @@ class SettingsActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener
 
 		override fun onStopTrackingTouch(seekBar: SeekBar)
 		{
-			val frequencyM = (Settings.getUpdateFrequency(this@SettingsActivity) / 1000L / 60L).toInt()
+			val frequencyM = (Settings.getUpdateFrequency(this@SettingsBaseActivity) / 1000L / 60L).toInt()
 
-			Toast.makeText(this@SettingsActivity,
+			Toast.makeText(this@SettingsBaseActivity,
 						   getString(R.string.TOAST_update_frequency_set, frequencyM),
 						   Toast.LENGTH_SHORT)
 					.show()

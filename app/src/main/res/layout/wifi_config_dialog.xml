@@ -1,60 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="wrap_content"
-              android:layout_height="match_parent"
-              android:focusable="true"
-              android:focusableInTouchMode="true">
+			  android:orientation="vertical"
+			  android:layout_width="wrap_content"
+			  android:layout_height="match_parent"
+			  android:focusable="true"
+			  android:focusableInTouchMode="true">
 
-    <requestFocus/>
+	<requestFocus/>
 
-    <TextView
-        android:id="@+id/WIFIDIALOG_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minWidth="@dimen/dialog_width"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:padding="@dimen/default_padding"
-        android:background="@color/primary"
-        android:lines="1"
-        android:ellipsize="end"
-        android:text="@string/SETTINGS_WIFIDIALOG_title"/>
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:minWidth="@dimen/dialog_width"
+		android:padding="@dimen/default_padding"
+		android:background="@color/primary"
+		android:orientation="horizontal">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/default_padding">
+		<ImageButton
+			android:id="@+id/WIFIDIALOG_close"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginEnd="@dimen/default_margin"
+			android:background="?android:attr/selectableItemBackgroundBorderless"
+			android:src="@drawable/ic_close"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/SETTINGS_WIFIDIALOG_ssid"/>
+		<TextView
+			android:id="@+id/WIFIDIALOG_title"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:lines="1"
+			android:ellipsize="end"
+			android:text="@string/SETTINGS_WIFIDIALOG_title"/>
 
-        <EditText
-            android:id="@+id/WIFIDIALOG_ssid"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text|textNoSuggestions"
-            android:imeOptions="flagNoFullscreen"/>
+		<ImageButton
+			android:id="@+id/WIFIDIALOG_info"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="?android:attr/selectableItemBackgroundBorderless"
+			android:src="@drawable/ic_wifi_info"/>
+	</LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/SETTINGS_WIFIDIALOG_password"/>
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/WIFIDIALOG_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:imeOptions="flagNoFullscreen"/>
+		<LinearLayout
+			android:orientation="vertical"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:padding="@dimen/default_padding">
 
-        <Button
-            android:id="@+id/WIFIDIALOG_confirm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:text="@string/SETTINGS_WIFIDIALOG_connect"/>
-    </LinearLayout>
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/SETTINGS_WIFIDIALOG_ssid"/>
+
+			<EditText
+				android:id="@+id/WIFIDIALOG_ssid"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:inputType="text|textNoSuggestions"
+				android:imeOptions="flagNoFullscreen"/>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/SETTINGS_WIFIDIALOG_password"/>
+
+			<EditText
+				android:id="@+id/WIFIDIALOG_password"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:inputType="textPassword"
+				android:imeOptions="flagNoFullscreen"/>
+
+			<CheckBox
+				android:id="@+id/WIFIDIALOG_show_password"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/WIFIDIALOG_show_password"/>
+
+			<Button
+				android:id="@+id/WIFIDIALOG_confirm"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="end"
+				android:text="@string/SETTINGS_WIFIDIALOG_connect"/>
+		</LinearLayout>
+	</ScrollView>
 </LinearLayout>

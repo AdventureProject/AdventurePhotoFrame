@@ -12,6 +12,7 @@ import android.util.Log
 import android.view.View
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.darkrockstudios.iot.adventurephotoframe.application.App
@@ -19,7 +20,6 @@ import com.darkrockstudios.iot.adventurephotoframe.application.GlideApp
 import com.darkrockstudios.iot.adventurephotoframe.base.BaseActivity
 import com.darkrockstudios.iot.adventurephotoframe.data.Photo
 import com.darkrockstudios.iot.adventurephotoframe.settings.Settings
-import com.darkrockstudios.iot.adventurephotoframe.settings.SettingsActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.tutorial.*
 import kotlinx.android.synthetic.main.tutorial_hotspots.*
@@ -145,8 +145,7 @@ class MainActivity : BaseActivity()
 					.load(photo.image)
 					.placeholder(R.drawable.loading)
 					.error(R.drawable.no_image)
-					//.resize(photoView.measuredWidth, photoView.measuredHeight)
-					.centerCrop()
+					.transition(DrawableTransitionOptions.withCrossFade())
 					.listener(ImageCallback())
 					.into(photoView)
 		}

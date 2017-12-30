@@ -8,9 +8,10 @@
     tools:context="com.darkrockstudios.iot.adventurephotoframe.MainActivity">
 
     <ImageView
-        android:id="@+id/PHOTOFRAME_photo"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+		android:id="@+id/PHOTOFRAME_photo"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:scaleType="centerCrop"/>
 
     <LinearLayout
         android:id="@+id/PHOTOFRAME_loading"

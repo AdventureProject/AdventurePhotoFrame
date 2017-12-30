@@ -10,17 +10,16 @@ import retrofit2.Response
 
 class HealthMonitorService : JobService()
 {
-
 	override fun onStartJob(params: JobParameters): Boolean
 	{
-		if (BuildConfig.DEBUG)
+		if (!BuildConfig.DEBUG)
 		{
 			Log.i(TAG, "Checking in with Health Monitor...")
 
 			val errorLog = ErrorHandler.readErrorFile(this)
 			val call = App.inst.networking.m_photoFrameService.healthCheckIn(App.inst.photoFrameId,
-			                                                                 BuildConfig.VERSION_CODE,
-			                                                                 errorLog)
+																			 BuildConfig.VERSION_CODE,
+																			 errorLog)
 			call.enqueue(Callback(params))
 		}
 

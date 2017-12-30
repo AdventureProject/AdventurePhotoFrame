@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.darkrockstudios.iot.adventurephotoframe.application.App
 import com.darkrockstudios.iot.adventurephotoframe.application.GlideApp
 import com.darkrockstudios.iot.adventurephotoframe.base.BaseActivity
@@ -154,11 +155,13 @@ class PhotoInfoActivity : BaseActivity()
 			GlideApp.with(this)
 					.load(getZoomedInMapUrl(location))
 					.placeholder(R.drawable.map_loading)
+					.transition(withCrossFade())
 					.into(PHOTOINFO_map_close)
 
 			GlideApp.with(this)
 					.load(getZoomedOutMapUrl(location))
 					.placeholder(R.drawable.map_loading)
+					.transition(withCrossFade())
 					.into(PHOTOINFO_map_far)
 		}
 		else

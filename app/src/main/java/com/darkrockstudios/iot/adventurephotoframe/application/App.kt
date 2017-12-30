@@ -11,17 +11,14 @@ import com.darkrockstudios.iot.adventurephotoframe.api.Networking
 import com.darkrockstudios.iot.adventurephotoframe.healthmonitor.ErrorHandler
 import com.darkrockstudios.iot.adventurephotoframe.healthmonitor.HealthMonitorService
 import com.darkrockstudios.iot.adventurephotoframe.settings.Settings
-import com.google.android.things.update.UpdateManager
-import com.google.android.things.update.UpdatePolicy
 import java.util.*
-import java.util.concurrent.TimeUnit
 
 
 /**
  * Created by adamw on 12/21/2016.
  */
 
-class App : Application()
+open class App : Application()
 {
 	lateinit var networking: Networking
 		private set
@@ -57,8 +54,6 @@ class App : Application()
 
 		setupHealthMonitor()
 
-		setupUpdateMonitoring()
-
 		// Ensure the photo frame is in manual brightness mode
 		/*
 		android.provider.Settings.System.putInt( getContentResolver(),
@@ -67,16 +62,6 @@ class App : Application()
 
 		android.provider.Settings.System.putInt(getContentResolver(), android.provider.Settings.System.SCREEN_BRIGHTNESS, 1 );
 		*/
-	}
-
-	private fun setupUpdateMonitoring()
-	{
-		val manager = UpdateManager()
-
-		val updatePolicy = UpdatePolicy.Builder().setPolicy(UpdateManager.POLICY_APPLY_AND_REBOOT)
-				.setApplyDeadline(1, TimeUnit.HOURS)
-				.build()
-		manager.setPolicy(updatePolicy)
 	}
 
 	private fun setupErrorHandling()
