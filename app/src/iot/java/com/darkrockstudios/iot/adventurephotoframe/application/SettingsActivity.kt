@@ -67,8 +67,8 @@ class SettingsActivity : SettingsBaseActivity()
 		}
 	}
 
-	private val m_updateManager = UpdateManager()
-	private val m_deviceManager = DeviceManager()
+	private val m_updateManager = UpdateManager.getInstance()
+	private val m_deviceManager = DeviceManager.getInstance()
 
 	override fun onCreate(savedInstanceState: Bundle?)
 	{

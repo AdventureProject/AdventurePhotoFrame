@@ -20,6 +20,7 @@ import com.darkrockstudios.iot.adventurephotoframe.application.GlideApp
 import com.darkrockstudios.iot.adventurephotoframe.base.BaseActivity
 import com.darkrockstudios.iot.adventurephotoframe.data.Photo
 import com.darkrockstudios.iot.adventurephotoframe.settings.Settings
+import com.google.firebase.analytics.FirebaseAnalytics
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.tutorial.*
 import kotlinx.android.synthetic.main.tutorial_hotspots.*
@@ -27,6 +28,7 @@ import me.eugeniomarletti.extras.SimpleActivityCompanion
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 class MainActivity : BaseActivity()
 {
@@ -146,7 +148,7 @@ class MainActivity : BaseActivity()
 					.placeholder(R.drawable.loading)
 					.error(R.drawable.no_image)
 					.transition(DrawableTransitionOptions.withCrossFade())
-					.listener(ImageCallback())
+					.listener(ImageCallback(photo.id))
 					.into(photoView)
 		}
 		else
@@ -170,6 +172,7 @@ class MainActivity : BaseActivity()
 		TUTORIAL_hotspots_container.visibility = View.GONE
 		TUTORIAL_container.visibility = View.VISIBLE
 		TUTORIAL_container.alpha = 1.0f
+
 		/*
 		ObjectAnimator anim = ObjectAnimator.ofFloat( TUTORIAL_container, "alpha", 0f, 1f );
 		anim.setDuration( 50 );
@@ -192,10 +195,12 @@ class MainActivity : BaseActivity()
 	private val isTutorialShowing: Boolean
 		get() = TUTORIAL_container.alpha == 1.0f
 
-	private inner class ImageCallback : RequestListener<Drawable>
+	private inner class ImageCallback(val imageId: String?) : RequestListener<Drawable>
 	{
 		override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean
 		{
+			imageId?.let { logPhotoSuccess(imageId) }
+
 			Log.i(TAG, "Image load successful!")
 			PHOTOFRAME_loading.visibility = View.GONE
 
@@ -206,6 +211,8 @@ class MainActivity : BaseActivity()
 
 		override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean
 		{
+			imageId?.let { logPhotoFailure(imageId) }
+
 			Log.w(TAG, "Image load failed.")
 			PHOTOFRAME_loading.visibility = View.GONE
 
@@ -223,11 +230,15 @@ class MainActivity : BaseActivity()
 			val photo = response.body()
 			if (photo != null)
 			{
+				photo.id?.let { logPhotoInfoSuccess(photo.id) }
+
 				Log.d(TAG, photo.toString())
 				updatePhoto(photo)
 			}
 			else
 			{
+				logPhotoInfoFailure()
+
 				Log.w(TAG, "Failed to get photo info from success")
 				PHOTOFRAME_loading.visibility = View.GONE
 				scheduleUpdateTask(FAILURE_BACKOFF)
@@ -236,13 +247,15 @@ class MainActivity : BaseActivity()
 
 		override fun onFailure(call: Call<Photo>, t: Throwable)
 		{
+			logPhotoInfoFailure()
+
 			Log.w(TAG, "Failed to get photo info... " + t)
 			PHOTOFRAME_loading.visibility = View.GONE
 			scheduleUpdateTask(FAILURE_BACKOFF)
 		}
 	}
 
-	fun onTutorial(view: View)
+	private fun onTutorial(view: View)
 	{
 		if (isTutorialShowing)
 		{
@@ -254,14 +267,16 @@ class MainActivity : BaseActivity()
 		}
 	}
 
-	fun onNext(view: View)
+	private fun onNext(view: View)
 	{
 		hideTutorial()
 		requestNewPhoto()
 	}
 
-	fun onPhotoInfo(view: View)
+	private fun onPhotoInfo(view: View)
 	{
+		m_currentPhoto?.id?.let { logPhotoDetails(it) }
+
 		hideTutorial()
 
 		if (m_currentPhoto != null)
@@ -276,13 +291,13 @@ class MainActivity : BaseActivity()
 		}
 	}
 
-	fun onSettings(view: View)
+	private fun onSettings(view: View)
 	{
 		hideTutorial()
 		SettingsActivity.start(this)
 	}
 
-	fun onAbout(view: View)
+	private fun onAbout(view: View)
 	{
 		hideTutorial()
 		AboutActivity.start(this)
@@ -302,5 +317,43 @@ class MainActivity : BaseActivity()
 		{
 			updateConnectionStatus()
 		}
+	}
+
+	private fun logPhotoInfoFailure()
+	{
+		App.inst.analytics.logEvent("photo_info_failure", Bundle())
+	}
+
+	private val PARAM_VERB = "verb"
+	private fun logPhotoInfoSuccess(id: String)
+	{
+		val bundle = Bundle()
+		bundle.putString(FirebaseAnalytics.Param.ITEM_ID, id)
+		bundle.putString(PARAM_VERB, "photo_info_success")
+		App.inst.analytics.logEvent(FirebaseAnalytics.Event.VIEW_ITEM, bundle)
+	}
+
+	private fun logPhotoSuccess(id: String)
+	{
+		val bundle = Bundle()
+		bundle.putString(FirebaseAnalytics.Param.ITEM_ID, id)
+		bundle.putString(PARAM_VERB, "photo_load_success")
+		App.inst.analytics.logEvent(FirebaseAnalytics.Event.VIEW_ITEM, bundle)
+	}
+
+	private fun logPhotoFailure(id: String)
+	{
+		val bundle = Bundle()
+		bundle.putString(FirebaseAnalytics.Param.ITEM_ID, id)
+		bundle.putString(PARAM_VERB, "photo_load_failure")
+		App.inst.analytics.logEvent(FirebaseAnalytics.Event.VIEW_ITEM, bundle)
+	}
+
+	private fun logPhotoDetails(id: String)
+	{
+		val bundle = Bundle()
+		bundle.putString(FirebaseAnalytics.Param.ITEM_ID, id)
+		bundle.putString(PARAM_VERB, "photo_details")
+		App.inst.analytics.logEvent(FirebaseAnalytics.Event.VIEW_ITEM, bundle)
 	}
 }

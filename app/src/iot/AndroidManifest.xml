@@ -3,6 +3,10 @@
 		  xmlns:tools="http://schemas.android.com/tools"
 		  package="com.darkrockstudios.iot.adventurephotoframe">
 
+	<uses-permission android:name="com.google.android.things.permission.MANAGE_UPDATE_POLICY"/>
+	<uses-permission android:name="com.google.android.things.permission.PERFORM_UPDATE_NOW"/>
+	<uses-permission android:name="com.google.android.things.permission.REBOOT"/>
+
 	<application
 		tools:replace="name"
 		android:name=".application.IotApp">

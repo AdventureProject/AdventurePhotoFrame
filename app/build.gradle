@@ -3,6 +3,10 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
+androidExtensions {
+    experimental = true
+}
+
 repositories {
     jcenter()
     mavenCentral()
@@ -17,7 +21,7 @@ android {
         minSdkVersion 27
         targetSdkVersion 27
         versionCode 7
-        versionName "1.1"
+        versionName "1.2"
     }
     buildTypes {
 ***REMOVED***
@@ -53,28 +57,29 @@ android {
 }
 
 dependencies {
-    implementation 'com.android.support:support-core-utils:27.0.2'
-    implementation 'com.android.support:percent:27.0.2'
-    implementation 'com.android.support:appcompat-v7:27.0.2'
-    implementation 'com.android.support:cardview-v7:27.0.2'
+    implementation 'com.android.support:support-core-utils:27.1.1'
+    implementation 'com.android.support:percent:27.1.1'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:cardview-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 
-    implementation 'com.google.firebase:firebase-messaging:11.6.2'
+    implementation 'com.google.firebase:firebase-core:12.0.1'
+    implementation 'com.google.firebase:firebase-messaging:12.0.1'
 
-    iotProvided 'com.google.android.things:androidthings:0.6-devpreview'
+    iotCompileOnly 'com.google.android.things:androidthings:0.7-devpreview'
 
-    implementation 'com.google.code.gson:gson:2.8.0'
-    implementation 'com.squareup.retrofit2:retrofit:2.1.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
+    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.github.bumptech.glide:glide:4.4.0'
     kapt 'com.github.bumptech.glide:compiler:4.4.0'
-    implementation 'com.github.bumptech.glide:okhttp3-integration:4.4.0@aar'
-    implementation group: 'joda-time', name: 'joda-time', version: '2.9.9'
+    implementation 'com.github.bumptech.glide:okhttp3-integration:4.7.0@aar'
+    implementation 'joda-time:joda-time:2.9.9'
     implementation 'com.github.apl-devs:appintro:v4.2.2'
-    implementation 'org.unbescape:unbescape:1.1.5.RELEASE'
-    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
+    implementation 'org.unbescape:unbescape:1.1.6.RELEASE'
+    implementation 'org.apache.commons:commons-lang3:3.7'
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jre7:1.2.31'
     implementation 'com.github.nsk-mironov.kotlin-jetpack:jetpack-bindings-arguments:0.14.2'
     implementation 'me.eugeniomarletti:android-extras-delegates:1.0.5'
 }

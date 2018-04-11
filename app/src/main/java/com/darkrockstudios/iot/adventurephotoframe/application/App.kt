@@ -11,6 +11,7 @@ import com.darkrockstudios.iot.adventurephotoframe.api.Networking
 import com.darkrockstudios.iot.adventurephotoframe.healthmonitor.ErrorHandler
 import com.darkrockstudios.iot.adventurephotoframe.healthmonitor.HealthMonitorService
 import com.darkrockstudios.iot.adventurephotoframe.settings.Settings
+import com.google.firebase.analytics.FirebaseAnalytics
 import java.util.*
 
 
@@ -20,6 +21,9 @@ import java.util.*
 
 open class App : Application()
 {
+	lateinit var analytics: FirebaseAnalytics
+		private set
+
 	lateinit var networking: Networking
 		private set
 
@@ -49,6 +53,8 @@ open class App : Application()
 
 		super.onCreate()
 		inst = this
+
+		analytics = FirebaseAnalytics.getInstance(this)
 
 		networking = Networking()
 

@@ -30,6 +30,56 @@
       "api_key": [
         {
           "current_key": "AIzaSyD8Ljisc8OPdkdGE1kxkLh_bc_ILzMgQiM"
+***REMOVED***,
+        {
+          "current_key": "AIzaSyCB9CqjuHD2GWSGTnG757O_VqHv1dxkN4U"
+***REMOVED***
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+***REMOVED***,
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1032308481835-uj4spuj8bak55vpiuh9ml43drhuhrarj.apps.googleusercontent.com",
+              "client_type": 3
+    ***REMOVED***
+          ]
+***REMOVED***,
+        "ads_service": {
+          "status": 2
+***REMOVED***
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1032308481835:android:8b61908db8eac694",
+        "android_client_info": {
+          "package_name": "com.darkrockstudios.apps.pcvolumemixer"
+***REMOVED***
+      },
+      "oauth_client": [
+        {
+          "client_id": "1032308481835-s8icdug9dmb53hllpmr5riald91pe6kh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.darkrockstudios.apps.pcvolumemixer",
+            "certificate_hash": "906166159500c4ef52acfca64f511b3c0dac5a28"
+  ***REMOVED***
+***REMOVED***,
+        {
+          "client_id": "1032308481835-uj4spuj8bak55vpiuh9ml43drhuhrarj.apps.googleusercontent.com",
+          "client_type": 3
+***REMOVED***
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8Ljisc8OPdkdGE1kxkLh_bc_ILzMgQiM"
+***REMOVED***,
+        {
+          "current_key": "AIzaSyCB9CqjuHD2GWSGTnG757O_VqHv1dxkN4U"
 ***REMOVED***
       ],
       "services": {

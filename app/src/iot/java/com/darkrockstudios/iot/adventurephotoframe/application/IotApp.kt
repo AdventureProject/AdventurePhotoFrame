@@ -22,7 +22,7 @@ class IotApp : App()
 
 	private fun setupUpdateMonitoring()
 	{
-		val manager = UpdateManager()
+		val manager = UpdateManager.getInstance()
 
 		val updatePolicy = UpdatePolicy.Builder().setPolicy(UpdateManager.POLICY_APPLY_AND_REBOOT)
 				.setApplyDeadline(1, TimeUnit.HOURS)
