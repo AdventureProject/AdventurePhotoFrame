@@ -28,7 +28,6 @@ class PhotoInfoActivity : BaseActivity()
 	companion object : ActivityCompanion<IntentOptions>(IntentOptions, PhotoInfoActivity::class)
 	{
 		private val TAG = PhotoInfoActivity::class.java.simpleName
-		private const val AUTO_HIDE = 5L * 1000L
 		private const val AUTO_CLOSE = 5L * 60L * 1000L
 	}
 
@@ -39,7 +38,6 @@ class PhotoInfoActivity : BaseActivity()
 	}
 
 	private lateinit var m_timer: Timer
-	private var m_autoCloseDescriptionTask: AutoDescriptionCloseTask? = AutoDescriptionCloseTask()
 	private var m_autoCloseTask: AutoCloseTask = AutoCloseTask()
 
 	override fun onCreate(savedInstanceState: Bundle?)
@@ -47,8 +45,6 @@ class PhotoInfoActivity : BaseActivity()
 		super.onCreate(savedInstanceState)
 
 		m_timer = Timer()
-		m_timer.schedule(m_autoCloseDescriptionTask, AUTO_HIDE)
-		m_timer.schedule(m_autoCloseTask, AUTO_CLOSE)
 
 		with(PhotoInfoActivity.IntentOptions) {
 			if (intent.photoInfo != null)
@@ -95,15 +91,6 @@ class PhotoInfoActivity : BaseActivity()
 		m_timer.schedule(m_autoCloseTask, AUTO_CLOSE)
 	}
 
-	private inner class AutoDescriptionCloseTask : TimerTask()
-	{
-		override fun run()
-		{
-			Log.d(TAG, "Auto-hiding description")
-			runOnUiThread { PHOTOINFO_description.visibility = View.GONE }
-		}
-	}
-
 	private inner class AutoCloseTask : TimerTask()
 	{
 		override fun run()
@@ -133,7 +120,7 @@ class PhotoInfoActivity : BaseActivity()
 
 		override fun onFailure(call: Call<Photo>, t: Throwable)
 		{
-			Log.w(TAG, "Failed to get photo info... " + t)
+			Log.w(TAG, "Failed to get photo info... $t")
 			PHOTOINFO_loading.visibility = View.GONE
 			finish()
 		}
@@ -172,12 +159,6 @@ class PhotoInfoActivity : BaseActivity()
 
 	private fun toggleDescription(view: View)
 	{
-		m_autoCloseDescriptionTask?.let {
-			Log.d(TAG, "Canceling auto-dismiss description task.")
-			it.cancel()
-			m_autoCloseDescriptionTask = null
-		}
-
 		rescheduleAutoClose()
 
 		if (PHOTOINFO_description.visibility == View.GONE)
