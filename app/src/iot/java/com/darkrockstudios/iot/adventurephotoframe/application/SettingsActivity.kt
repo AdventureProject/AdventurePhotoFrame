@@ -1,5 +1,7 @@
 package com.darkrockstudios.iot.adventurephotoframe
 
+import android.content.Context
+import android.net.wifi.WifiManager
 import android.os.Bundle
 import android.view.View
 import com.darkrockstudios.iot.adventurephotoframe.settings.SettingsBaseActivity
@@ -7,8 +9,10 @@ import com.google.android.things.device.DeviceManager
 import com.google.android.things.update.StatusListener
 import com.google.android.things.update.UpdateManager
 import com.google.android.things.update.UpdateManagerStatus
+import com.google.android.things.update.UpdatePolicy
 import kotlinx.android.synthetic.main.activity_settings.*
 import me.eugeniomarletti.extras.SimpleActivityCompanion
+
 
 /**
  * Created by adamw on 12/11/2017.
@@ -74,10 +78,21 @@ class SettingsActivity : SettingsBaseActivity()
 	{
 		super.onCreate(savedInstanceState)
 
+		ensureWifiEnabled()
+
 		SETTINGS_reboot_button.setOnClickListener { m_deviceManager.reboot() }
-		SETTINGS_update_button.setOnClickListener { m_updateManager.performUpdateNow(UpdateManager.POLICY_APPLY_AND_REBOOT); }
+		SETTINGS_update_button.setOnClickListener { m_updateManager.performUpdateNow(UpdatePolicy.POLICY_APPLY_AND_REBOOT); }
 
 		m_updateManager.addStatusListener(m_updateListener)
+	}
+
+	private fun ensureWifiEnabled()
+	{
+		val wifiManager = getSystemService(Context.WIFI_SERVICE) as WifiManager
+		if (!wifiManager.isWifiEnabled)
+		{
+			wifiManager.isWifiEnabled = true
+		}
 	}
 
 	override fun onResume()
@@ -100,6 +115,6 @@ class SettingsActivity : SettingsBaseActivity()
 		SETTINGS_update_status.text = ""
 
 		// Trigger an update check immediately
-		m_updateManager.performUpdateNow(UpdateManager.POLICY_CHECKS_ONLY)
+		m_updateManager.performUpdateNow(UpdatePolicy.POLICY_CHECKS_ONLY)
 	}
 }

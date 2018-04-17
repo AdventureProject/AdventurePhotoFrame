@@ -24,7 +24,7 @@ class IotApp : App()
 	{
 		val manager = UpdateManager.getInstance()
 
-		val updatePolicy = UpdatePolicy.Builder().setPolicy(UpdateManager.POLICY_APPLY_AND_REBOOT)
+		val updatePolicy = UpdatePolicy.Builder().setPolicy(UpdatePolicy.POLICY_APPLY_AND_REBOOT)
 				.setApplyDeadline(1, TimeUnit.HOURS)
 				.build()
 		manager.setPolicy(updatePolicy)
