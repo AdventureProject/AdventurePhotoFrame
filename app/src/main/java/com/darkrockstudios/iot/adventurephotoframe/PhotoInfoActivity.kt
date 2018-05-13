@@ -131,7 +131,17 @@ class PhotoInfoActivity : BaseActivity()
 		PHOTOINFO_loading.visibility = View.GONE
 
 		PHOTOINFO_title.text = HtmlEscape.unescapeHtml(photo.title)
-		PHOTOINFO_description.text = HtmlEscape.unescapeHtml(photo.description)
+
+		if( TextUtils.isEmpty(photo.description) )
+		{
+			PHOTOINFO_description.text = getText(R.string.PHOTO_INFO_no_description )
+			PHOTOINFO_description.visibility = View.GONE
+		}
+		else
+		{
+			PHOTOINFO_description.text = HtmlEscape.unescapeHtml(photo.description)
+			PHOTOINFO_description.visibility = View.VISIBLE
+		}
 
 		val dateTime = DateTimeFormat.forPattern("yyy-MM-dd HH:mm:ss").parseDateTime(photo.date)
 		PHOTOINFO_date.text = DateTimeFormat.forPattern("HH:mm - EEEE, MMMM ee, yyyy").print(dateTime)

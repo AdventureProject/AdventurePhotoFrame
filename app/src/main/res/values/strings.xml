@@ -92,4 +92,6 @@
 	<string name="SETTINGS_reboot_button">Reboot</string>
 	<string name="WIFIDIALOG_show_password">Show Password</string>
 	<color name="WELCOME_slide8_background">#b2371c</color>
+
+	<string name="PHOTO_INFO_no_description"><i>No Description</i></string>
 </resources>
