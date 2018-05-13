@@ -94,4 +94,5 @@
 	<color name="WELCOME_slide8_background">#b2371c</color>
 
 	<string name="PHOTO_INFO_no_description"><i>No Description</i></string>
+	<string name="PHOTO_INFO_no_location">No location data available</string>
 </resources>

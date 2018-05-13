@@ -149,6 +149,8 @@ class PhotoInfoActivity : BaseActivity()
 		val location = photo.location
 		if (location != null && !TextUtils.isEmpty(location))
 		{
+			PHOTOINFO_no_location.visibility = View.GONE
+
 			GlideApp.with(this)
 					.load(getZoomedInMapUrl(location))
 					.placeholder(R.drawable.map_loading)
@@ -164,6 +166,19 @@ class PhotoInfoActivity : BaseActivity()
 		else
 		{
 			Log.i(TAG, "No Location for Photo")
+			PHOTOINFO_no_location.visibility = View.VISIBLE
+
+			GlideApp.with(this)
+					.load(R.drawable.no_location_in)
+					.placeholder(R.drawable.map_loading)
+					.transition(withCrossFade())
+					.into(PHOTOINFO_map_close)
+
+			GlideApp.with(this)
+					.load(R.drawable.no_location_out)
+					.placeholder(R.drawable.map_loading)
+					.transition(withCrossFade())
+					.into(PHOTOINFO_map_far)
 		}
 	}
 

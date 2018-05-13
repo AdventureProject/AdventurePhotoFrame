@@ -12,6 +12,7 @@
 		android:id="@+id/PHOTOINFO_map_far"
 		android:layout_width="0dp"
 		android:layout_height="match_parent"
+		tools:src="@drawable/no_location_out"
 		app:layout_constraintHorizontal_weight="1"
 		app:layout_constraintTop_toTopOf="parent"
 		app:layout_constraintBottom_toBottomOf="parent"
@@ -24,6 +25,7 @@
 		android:id="@+id/PHOTOINFO_map_close"
 		android:layout_width="0dp"
 		android:layout_height="match_parent"
+		tools:src="@drawable/no_location_in"
 		app:layout_constraintHorizontal_weight="1"
 		app:layout_constraintTop_toTopOf="parent"
 		app:layout_constraintBottom_toBottomOf="parent"
@@ -83,4 +85,24 @@
 		app:layout_constraintLeft_toLeftOf="parent"
 		app:layout_constraintTop_toTopOf="parent"
 		app:layout_constraintBottom_toBottomOf="parent"/>
+
+	<TextView
+		android:text="@string/PHOTO_INFO_no_location"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:paddingStart="8dp"
+		android:id="@+id/PHOTOINFO_no_location"
+		android:shadowColor="@android:color/black"
+		android:shadowDx="-2"
+		android:shadowDy="2"
+		android:shadowRadius="0.01"
+		android:textAppearance="@style/MediumText"
+		android:textStyle="italic"
+		app:layout_constraintEnd_toEndOf="parent"
+		android:layout_marginEnd="@dimen/default_margin"
+		android:layout_marginBottom="@dimen/default_margin"
+		app:layout_constraintBottom_toTopOf="@+id/PHOTOINFO_date"
+		tools:visibility="visible"
+		android:visibility="gone"
+		tools:ignore="RtlSymmetry"/>
 </android.support.constraint.ConstraintLayout>
