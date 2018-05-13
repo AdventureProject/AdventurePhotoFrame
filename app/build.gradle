@@ -16,7 +16,7 @@ repositories {
 
 android {
     compileSdkVersion 27
-    buildToolsVersion '28.0.0 rc1'
+    buildToolsVersion '28.0.0 rc2'
     defaultConfig {
         applicationId "com.darkrockstudios.iot.adventurephotoframe"
         minSdkVersion 27
@@ -46,7 +46,7 @@ android {
         iot {
             dimension "mode"
         }
-        android {
+        regular {
             dimension "mode"
         }
     }
@@ -66,10 +66,10 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:cardview-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
-    implementation 'com.google.firebase:firebase-core:15.0.0'
-    implementation 'com.google.firebase:firebase-messaging:15.0.0'
+    implementation 'com.google.firebase:firebase-core:15.0.2'
+    implementation 'com.google.firebase:firebase-messaging:15.0.2'
     //implementation 'com.crashlytics.sdk.android:crashlytics:2.9.1'
-    iotCompileOnly 'com.google.android.things:androidthings:0.8-devpreview'
+    iotCompileOnly 'com.google.android.things:androidthings:1.0'
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.github.bumptech.glide:glide:4.4.0'
@@ -79,7 +79,7 @@ dependencies {
     implementation 'com.github.apl-devs:appintro:v4.2.2'
     implementation 'org.unbescape:unbescape:1.1.6.RELEASE'
     implementation 'org.apache.commons:commons-lang3:3.7'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.github.nsk-mironov.kotlin-jetpack:jetpack-bindings-arguments:0.14.2'
     implementation 'me.eugeniomarletti:android-extras-delegates:1.0.5'
 }
