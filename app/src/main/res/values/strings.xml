@@ -84,10 +84,10 @@
 	<string name="SETTINGS_update_title">System Update</string>
 	<string name="SETTINGS_UPDATE_status_idle">Up to date</string>
 	<string name="SETTINGS_UPDATE_status_error">Error</string>
-	<string name="SETTINGS_UPDATE_status_checking">Checking for updates...</string>
+	<string name="SETTINGS_UPDATE_status_checking">Checking for updates…</string>
 	<string name="SETTINGS_UPDATE_status_available">Update available!</string>
-	<string name="SETTINGS_UPDATE_status_downloading">Downloading update...</string>
-	<string name="SETTINGS_UPDATE_status_finalizing">Finalizing update...</string>
+	<string name="SETTINGS_UPDATE_status_downloading">Downloading update…</string>
+	<string name="SETTINGS_UPDATE_status_finalizing">Finalizing update…</string>
 	<string name="SETTINGS_UPDATE_status_reboot">Reboot to finish update.</string>
 	<string name="SETTINGS_reboot_button">Reboot</string>
 	<string name="WIFIDIALOG_show_password">Show Password</string>
