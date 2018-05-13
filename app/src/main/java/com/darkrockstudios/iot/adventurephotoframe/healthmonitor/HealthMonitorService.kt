@@ -16,10 +16,9 @@ class HealthMonitorService : JobService()
 		{
 			Log.i(TAG, "Checking in with Health Monitor...")
 
-			val errorLog = ErrorHandler.readErrorFile(this)
 			val call = App.inst.networking.m_photoFrameService.healthCheckIn(App.inst.photoFrameId,
 																			 BuildConfig.VERSION_CODE,
-																			 errorLog)
+																			 "")
 			call.enqueue(Callback(params))
 		}
 
@@ -37,7 +36,6 @@ class HealthMonitorService : JobService()
 		override fun onResponse(call: Call<Void>, response: Response<Void>)
 		{
 			Log.i(TAG, "Health Check in complete")
-			ErrorHandler.clearErrorFile(this@HealthMonitorService)
 			jobFinished(m_params, false)
 		}
 

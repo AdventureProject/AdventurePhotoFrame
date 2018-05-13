@@ -6,9 +6,7 @@ import android.app.job.JobInfo
 import android.app.job.JobScheduler
 import android.content.ComponentName
 import android.content.Context
-import android.util.Log
 import com.darkrockstudios.iot.adventurephotoframe.api.Networking
-import com.darkrockstudios.iot.adventurephotoframe.healthmonitor.ErrorHandler
 import com.darkrockstudios.iot.adventurephotoframe.healthmonitor.HealthMonitorService
 import com.darkrockstudios.iot.adventurephotoframe.settings.Settings
 import com.google.firebase.analytics.FirebaseAnalytics
@@ -49,8 +47,6 @@ open class App : Application()
 
 	override fun onCreate()
 	{
-		setupErrorHandling()
-
 		super.onCreate()
 		inst = this
 
@@ -68,16 +64,6 @@ open class App : Application()
 
 		android.provider.Settings.System.putInt(getContentResolver(), android.provider.Settings.System.SCREEN_BRIGHTNESS, 1 );
 		*/
-	}
-
-	private fun setupErrorHandling()
-	{
-		// Setup handler for uncaught exceptions.
-		Thread.setDefaultUncaughtExceptionHandler { thread, e ->
-			Log.e(TAG, "Unhandled Exception", e)
-
-			ErrorHandler.writeErrorToFile(thread, e, this@App)
-		}
 	}
 
 	private fun setupHealthMonitor()
