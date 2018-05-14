@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.darkrockstudios.iot.adventurephotoframe.AboutActivity"
     android:id="@+id/activity_about"
@@ -13,63 +14,68 @@
 
     <TextView
         android:text="@string/ABOUT_HEADER"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:id="@+id/ABOUT_header"
         android:textAppearance="@style/LargeText"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/ABOUT_logo"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ABOUT_logo"
+        android:layout_marginEnd="@dimen/default_margin"/>
 
     <TextView
         android:text="@string/ABOUT_url"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="@dimen/default_padding"
         android:id="@+id/ABOUT_url"
         android:textAppearance="@style/MediumText"
-        android:layout_below="@+id/ABOUT_header"
-        android:layout_toStartOf="@+id/ABOUT_logo"
-        android:layout_alignParentStart="true"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ABOUT_header"
+        app:layout_constraintEnd_toStartOf="@+id/ABOUT_logo"
+        android:layout_marginEnd="@dimen/default_margin"/>
 
     <TextView
         android:text="@string/ABOUT_attribution"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="@dimen/default_padding"
-        android:layout_below="@+id/ABOUT_url"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/ABOUT_logo"
         android:textAppearance="@style/SmallText"
-        android:id="@+id/ABOUT_attribution"/>
+        android:id="@+id/ABOUT_attribution"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ABOUT_url"
+        app:layout_constraintEnd_toStartOf="@+id/ABOUT_logo"
+        android:layout_marginEnd="@dimen/default_margin"/>
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
         android:src="@drawable/logo"
         android:id="@+id/ABOUT_logo"
-        android:contentDescription="@string/ABOUT_logo_description"/>
+        android:contentDescription="@string/ABOUT_logo_description"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
         android:text="@string/ABOUT_feedback"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
         android:textAppearance="@style/SmallText"
         android:id="@+id/ABOUT_feedback"
-        android:layout_toStartOf="@+id/ABOUT_id"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ABOUT_id"
+        android:textAlignment="viewStart"
+        />
 
     <TextView
         android:id="@+id/ABOUT_id"
         tools:text="id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
         android:id="@+id/ABOUT_version"
@@ -77,23 +83,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_above="@+id/ABOUT_id"
-        android:layout_alignParentEnd="true"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/ABOUT_id"/>
 
     <Button
         android:text="@string/ABOUT_welcome_rerun"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/ABOUT_version"
-        android:layout_alignParentStart="true"
-        android:id="@+id/ABOUT_welcome_rerun"/>
+        android:id="@+id/ABOUT_welcome_rerun"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/ABOUT_version"/>
 
-    <Button
-        android:text="@string/ABOUT_reboot"
+    <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ABOUT_reboot"
-        android:layout_above="@+id/ABOUT_welcome_rerun"
-        android:layout_alignParentStart="true"
-        android:visibility="gone"/>
-</RelativeLayout>
+        android:id="@+id/ABOUT_update_channel_spinner"
+        app:layout_constraintTop_toBottomOf="@+id/ABOUT_update_channel_title"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:text="@string/ABOUT_update_channel_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ABOUT_update_channel_title"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/default_margin"
+        app:layout_constraintTop_toBottomOf="@+id/ABOUT_logo"
+        app:layout_constraintStart_toStartOf="@+id/ABOUT_update_channel_spinner"/>
+</android.support.constraint.ConstraintLayout>

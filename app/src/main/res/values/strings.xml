@@ -79,6 +79,11 @@
 	<string name="WELCOME_slide8_description">The last thing we need to do is get your Photo Frame connected to your WiFi. When you hit DONE you will be taken to the Settings screen where you can find your network and enter your password.\n\nWe hope you enjoy sharing in our Adventures!\n- Adam &amp; Stacy</string>
 	<string name="ABOUT_welcome_rerun">Re-run Welcome tutorial</string>
 	<string name="ABOUT_reboot">Reboot</string>
+	<string name="ABOUT_update_channel_title">Update Channel:</string>
+	<string name="ABOUT_update_channel_stable">Stable</string>
+	<string name="ABOUT_update_channel_beta">Beta</string>
+	<string name="ABOUT_update_channel_dev">Dev</string>
+	<string name="ABOUT_update_channel_canary">Canary</string>
 	<string name="SETTINGS_hidden_network">Add Network</string>
 	<string name="SETTINGS_update_button">Start Update</string>
 	<string name="SETTINGS_update_title">System Update</string>
