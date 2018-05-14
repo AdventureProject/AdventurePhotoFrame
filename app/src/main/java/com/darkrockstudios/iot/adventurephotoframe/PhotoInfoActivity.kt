@@ -57,8 +57,8 @@ class PhotoInfoActivity : BaseActivity()
 				if (intent.photoId != null)
 				{
 					intent.photoId?.let { photoId ->
-						val call = App.inst.networking.m_photoFrameService.getPhotoById(App.inst.photoFrameId, photoId)
-						Log.d(TAG, "Requesting photo info... " + photoId)
+						val call = App.inst.networking.m_photoFrameService.getPhotoById(App.inst.deviceId, photoId)
+						Log.d(TAG, "Requesting photo info... $photoId")
 						call.enqueue(PhotoCallback())
 					}
 				}

@@ -11,18 +11,20 @@ import retrofit2.http.*
 
 interface PhotoFrameApi
 {
-	@GET("photoframe/{photoFrameId}")
-	fun getPhoto(@Path("photoFrameId") photoFrameId: Long): Call<Photo>
+	@GET("photoframe/{deviceId}")
+	fun getPhoto(@Path("deviceId") deviceId: String): Call<Photo>
 
-	@GET("photoframe/{photoFrameId}/{photoId}")
-	fun getPhotoById(@Path("photoFrameId") photoFrameId: Long, @Path("photoId") photoId: Long): Call<Photo>
+	@GET("photoframe/{deviceId}/{photoId}")
+	fun getPhotoById(@Path("deviceId") deviceId: String, @Path("photoId") photoId: Long): Call<Photo>
 
 	@FormUrlEncoded
 	@POST("health/{photoFrameId}")
-	fun healthCheckIn(@Path("photoFrameId") photoFrameId: Long, @Query("version") version: Int,
-	                  @Field("errors") errorLog: String): Call<Void>
+	fun healthCheckIn(@Path("photoFrameId") photoFrameId: Long,
+					  @Query("deviceId") deviceId: String,
+					  @Query("version") version: Int,
+					  @Field("update_channel") updateChannel: String): Call<Void>
 
 	@FormUrlEncoded
-	@POST("photowallnfc/{photoFrameId}")
-	fun photoWallNfc(@Path("photoFrameId") photoFrameId: Long, @Field("registration_id") registrationId: String): Call<RegistrationResponse>
+	@POST("photowallnfc/{deviceId}")
+	fun photoWallNfc(@Path("deviceId") deviceId: String, @Field("registration_id") registrationId: String): Call<RegistrationResponse>
 }

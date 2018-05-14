@@ -5,6 +5,7 @@ import android.app.job.JobService
 import android.util.Log
 import com.darkrockstudios.iot.adventurephotoframe.BuildConfig
 import com.darkrockstudios.iot.adventurephotoframe.application.App
+import com.google.android.things.update.UpdateManager
 import retrofit2.Call
 import retrofit2.Response
 
@@ -17,8 +18,9 @@ class HealthMonitorService : JobService()
 			Log.i(TAG, "Checking in with Health Monitor...")
 
 			val call = App.inst.networking.m_photoFrameService.healthCheckIn(App.inst.photoFrameId,
+																			 App.inst.deviceId,
 																			 BuildConfig.VERSION_CODE,
-																			 "")
+																			 UpdateManager.getInstance().channel)
 			call.enqueue(Callback(params))
 		}
 

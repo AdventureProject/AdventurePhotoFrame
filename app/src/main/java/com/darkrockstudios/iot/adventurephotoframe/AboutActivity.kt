@@ -37,7 +37,7 @@ class AboutActivity : BaseActivity()
 		super.onCreate(savedInstanceState)
 
 		ABOUT_version.text = getString(R.string.SETTINGS_version, BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE)
-		ABOUT_id.text = getString(R.string.SETTINGS_id, App.inst.photoFrameId)
+		ABOUT_id.text = getString(R.string.SETTINGS_id, App.inst.deviceId)
 
 		ABOUT_welcome_rerun.setOnClickListener(this::onWeclomeClick)
 

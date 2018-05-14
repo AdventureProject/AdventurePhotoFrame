@@ -25,6 +25,10 @@ open class App : Application()
 	lateinit var networking: Networking
 		private set
 
+	val deviceId: String
+		@SuppressLint("HardwareIds")
+		get() = android.provider.Settings.Secure.getString(contentResolver, android.provider.Settings.Secure.ANDROID_ID)
+
 	// Get 4 unique digits
 	val photoFrameId: Long
 		@SuppressLint("DefaultLocale")

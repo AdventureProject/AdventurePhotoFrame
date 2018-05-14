@@ -16,7 +16,7 @@
 	<string name="SETTINGS_wifi_status">Status: %1$s</string>
 
 	<string name="SETTINGS_version">v: %1$s (%2$d)</string>
-	<string name="SETTINGS_id">id: %1$d</string>
+	<string name="SETTINGS_id">id: %1$s</string>
 
 	<string name="SETTINGS_WIFI_ITEM_no_ssid"><![CDATA[<i>&lt;hidden&gt;</i>]]></string>
 

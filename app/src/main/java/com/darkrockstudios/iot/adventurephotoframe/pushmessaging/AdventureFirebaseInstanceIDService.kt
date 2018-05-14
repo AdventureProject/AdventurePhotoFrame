@@ -52,8 +52,8 @@ class AdventureFirebaseInstanceIDService : FirebaseInstanceIdService()
 	{
 		clearRegistered(this)
 
-		val call = App.inst.networking.m_photoFrameService.photoWallNfc(App.inst.photoFrameId,
-		                                                                refreshedToken)
+		val call = App.inst.networking.m_photoFrameService.photoWallNfc(App.inst.deviceId,
+																		refreshedToken)
 		call.enqueue(Callback())
 	}
 

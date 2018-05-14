@@ -129,7 +129,7 @@ class MainActivity : BaseActivity()
 		hideTutorial()
 		PHOTOFRAME_loading.visibility = View.VISIBLE
 
-		val call = App.inst.networking.m_photoFrameService.getPhoto(App.inst.photoFrameId)
+		val call = App.inst.networking.m_photoFrameService.getPhoto(App.inst.deviceId)
 		Log.d(TAG, "Requesting photo info...")
 		call.enqueue(PhotoCallback())
 	}
