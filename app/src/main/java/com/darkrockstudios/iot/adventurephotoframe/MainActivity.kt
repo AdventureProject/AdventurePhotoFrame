@@ -69,8 +69,6 @@ class MainActivity : BaseActivity()
 		TUTORIAL_about.setOnClickListener(this::onAbout)
 		TUTORIAL_about_hotspot.setOnClickListener(this::onAbout)
 
-		requestNewPhoto()
-
 		handleFirstRun()
 	}
 
@@ -98,6 +96,11 @@ class MainActivity : BaseActivity()
 		scheduleUpdateTask(m_updateFrequency)
 
 		updateConnectionStatus()
+
+		if (m_currentPhoto == null)
+		{
+			requestNewPhoto()
+		}
 	}
 
 	override fun onPause()

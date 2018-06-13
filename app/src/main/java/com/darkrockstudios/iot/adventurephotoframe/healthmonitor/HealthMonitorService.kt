@@ -34,7 +34,6 @@ class HealthMonitorService : JobService()
 
 	private inner class Callback internal constructor(private val m_params: JobParameters) : retrofit2.Callback<Void>
 	{
-
 		override fun onResponse(call: Call<Void>, response: Response<Void>)
 		{
 			Log.i(TAG, "Health Check in complete")
